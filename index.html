@@ -9,12 +9,12 @@
         :root {
             --primary-color: #5865F2;
             --accent-color: #00ffcc;
-            --dark-bg: #0b0c10;
-            --card-bg: #1f2833;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
             --text-color: #ffffff;
-            --text-muted: #c5c6c7;
-            --header-bg: rgba(11, 12, 16, 0.9);
-            --gradient-bg: radial-gradient(circle at 50% 20%, #1a1a2e 0%, var(--dark-bg) 70%);
+            --text-muted: #ffffff;
+            --header-bg: rgba(18, 18, 18, 0.9);
+            --gradient-bg: radial-gradient(circle at 50% 20%, #2b2b2b 0%, var(--dark-bg) 70%);
         }
 
         [data-theme="light"] {
@@ -22,8 +22,8 @@
             --accent-color: #008f6b;
             --dark-bg: #f0f2f5;
             --card-bg: #ffffff;
-            --text-color: #1a1a1a;
-            --text-muted: #65676b;
+            --text-color: #ffffff;
+            --text-muted: #ffffff;
             --header-bg: rgba(255, 255, 255, 0.9);
             --gradient-bg: radial-gradient(circle at 50% 20%, #e4e6eb 0%, var(--dark-bg) 70%);
         }
@@ -31,23 +31,23 @@
         [data-theme="dark"] {
             --primary-color: #7289da;
             --accent-color: #7289da;
-            --dark-bg: #2c2f33;
-            --card-bg: #23272a;
+            --dark-bg: #121212;
+            --card-bg: #181818;
             --text-color: #ffffff;
-            --text-muted: #99aab5;
-            --header-bg: rgba(35, 39, 42, 0.9);
+            --text-muted: #ffffff;
+            --header-bg: rgba(24, 24, 24, 0.9);
             --gradient-bg: var(--dark-bg);
         }
 
         [data-theme="normal"] {
             --primary-color: #5865F2;
             --accent-color: #00ffcc;
-            --dark-bg: #0b0c10;
-            --card-bg: #1f2833;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
             --text-color: #ffffff;
-            --text-muted: #c5c6c7;
-            --header-bg: rgba(11, 12, 16, 0.9);
-            --gradient-bg: radial-gradient(circle at 50% 20%, #1a1a2e 0%, var(--dark-bg) 70%);
+            --text-muted: #ffffff;
+            --header-bg: rgba(18, 18, 18, 0.9);
+            --gradient-bg: radial-gradient(circle at 50% 20%, #2b2b2b 0%, var(--dark-bg) 70%);
         }
 
         * {
@@ -128,7 +128,7 @@
             font-weight: 700;
             border-radius: 12px;
             transition: all 0.3s ease;
-            color: var(--text-muted);
+            color: #ffffff;
             background: rgba(255, 255, 255, 0.03);
             display: flex;
             align-items: center;
@@ -155,7 +155,7 @@
         .settings-mini-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
+            color: #ffffff;
             width: 115px;
             height: 40px;
             border-radius: 10px;
@@ -177,7 +177,7 @@
 
         .settings-mini-btn:hover {
             background: var(--primary-color);
-            color: var(--text-color);
+            color: #ffffff;
             border-color: transparent;
         }
 
@@ -209,14 +209,14 @@
         }
 
         .settings-drawer-header h2 {
-            color: var(--accent-color);
+            color: #ffffff;
             font-size: 1.8rem;
         }
 
         .close-drawer-btn {
             background: rgba(255,255,255,0.05);
             border: none;
-            color: var(--text-muted);
+            color: #ffffff;
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -278,7 +278,7 @@
         .hero {
             text-align: center;
             padding: 70px 30px;
-            background: linear-gradient(135deg, var(--card-bg), var(--dark-bg));
+            background-color: var(--card-bg);
             border-radius: 24px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             margin-bottom: 40px;
@@ -291,14 +291,13 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--text-color), var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
         }
 
         .hero p {
             font-size: 1.15rem;
-            color: var(--text-muted);
+            color: #ffffff;
             max-width: 650px;
             margin: 0 auto 30px auto;
             line-height: 1.6;
@@ -306,20 +305,21 @@
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, var(--accent-color), #0077ff);
-            color: #0b0c10;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
             padding: 16px 40px;
             font-size: 1.1rem;
             font-weight: 800;
             border-radius: 14px;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 5px 20px rgba(0, 255, 204, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 255, 204, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
 
         .influence-section {
@@ -335,11 +335,11 @@
         .influence-header h2 {
             font-size: 2.2rem;
             margin-bottom: 8px;
-            color: var(--text-color);
+            color: #ffffff;
         }
 
         .influence-header p {
-            color: var(--text-muted);
+            color: #ffffff;
             font-size: 1.1rem;
         }
 
@@ -363,17 +363,17 @@
         }
 
         .inf-card.visits {
-            background: linear-gradient(135deg, #10b981, #047857);
+            background-color: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .inf-card.discord {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background-color: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .inf-card.players {
-            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            background-color: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
@@ -382,6 +382,7 @@
             font-weight: 900;
             margin-bottom: 5px;
             line-height: 1;
+            color: #ffffff;
         }
 
         .inf-card h4 {
@@ -394,11 +395,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            color: #ffffff;
         }
 
         .inf-card p {
             font-size: 1.05rem;
             opacity: 0.9;
+            color: #ffffff;
         }
 
         .features-grid {
@@ -410,9 +413,9 @@
 
         .feature-card {
             background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 30px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
             transition: transform 0.2s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -422,21 +425,21 @@
         }
 
         .feature-card h3 {
-            color: var(--accent-color);
+            color: #ffffff;
             margin-bottom: 12px;
             font-size: 1.3rem;
         }
 
         .feature-card p {
-            color: var(--text-muted);
+            color: #ffffff;
             line-height: 1.5;
         }
 
         .updates-container, .socials-container {
             background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 30px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
             max-width: 900px;
             margin: 0 auto;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -444,7 +447,7 @@
 
         .updates-container h2, .socials-container h2 {
             margin-bottom: 20px;
-            color: var(--accent-color);
+            color: #ffffff;
             font-size: 1.8rem;
         }
 
@@ -460,13 +463,13 @@
         }
 
         .updates-table th {
-            background-color: rgba(0, 255, 204, 0.1);
-            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
             font-weight: 700;
         }
 
         .updates-table td {
-            color: var(--text-muted);
+            color: #ffffff;
         }
 
         .credits-list {
@@ -490,11 +493,11 @@
 
         .credit-card h3 {
             font-size: 1.3rem;
-            color: var(--accent-color);
+            color: #ffffff;
         }
 
         .credit-card p {
-            color: var(--text-muted);
+            color: #ffffff;
             font-size: 1.1rem;
             line-height: 1.6;
         }
@@ -507,7 +510,7 @@
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: var(--text-color);
+            color: #ffffff;
         }
 
         .theme-switches {
@@ -518,7 +521,7 @@
         .theme-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
+            color: #ffffff;
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
@@ -529,7 +532,7 @@
         }
 
         .theme-btn.active {
-            background: var(--primary-color);
+            background: #4b5563;
             color: #ffffff;
             border-color: transparent;
         }
@@ -539,7 +542,7 @@
             padding: 12px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
+            color: #ffffff;
             border-radius: 10px;
             font-size: 1rem;
             outline: none;
@@ -548,7 +551,7 @@
 
         .lang-select option {
             background-color: var(--card-bg);
-            color: var(--text-color);
+            color: #ffffff;
         }
 
         .socials-grid {
@@ -558,8 +561,8 @@
         }
 
         .social-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 25px;
             border-radius: 14px;
             display: flex;
@@ -571,16 +574,16 @@
 
         .social-card:hover {
             transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--primary-color);
         }
 
         .social-card h3 {
-            color: var(--accent-color);
+            color: #ffffff;
             font-size: 1.3rem;
         }
 
         .social-card p {
-            color: var(--text-muted);
+            color: #ffffff;
             font-size: 0.95rem;
             line-height: 1.4;
         }
@@ -589,7 +592,7 @@
             text-align: center;
             padding: 25px;
             background-color: var(--header-bg);
-            color: var(--text-muted);
+            color: #ffffff;
             font-size: 0.9rem;
             margin-top: auto;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -972,7 +975,7 @@
                     if (el.classList.contains('nav-tab')) {
                         const iconName = iconMap[key] || 'circle';
                         el.innerHTML = `<i data-lucide="${iconName}"></i> ${translations[lang][key]}`;
-                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'H4') {
+                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'H2') {
                         if (el.querySelector('i')) {
                             const iconHtml = el.querySelector('i').outerHTML;
                             el.innerHTML = iconHtml + ' ' + translations[lang][key];
