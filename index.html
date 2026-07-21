@@ -494,13 +494,13 @@
             <div class="socials-container">
                 <h2 data-i18n-key="socialsTitle">Our Socials</h2>
                 <div class="socials-grid">
-                    <a href="https://discord.gg/fZytpCrdS" target="_blank" class="social-card">
-                        <h3>PLUS GAMES</h3>
-                        <p data-i18n-key="discordDesc">Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!</p>
-                    </a>
                     <a href="https://www.youtube.com/@UltrixLOL" target="_blank" class="social-card">
-                        <h3>UltrixLOL</h3>
+                        <h3>Youtube -> UltrixLOL</h3>
                         <p data-i18n-key="youtubeDesc">Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!</p>
+                    </a>
+                    <a href="https://discord.gg/fZytpCrdS" target="_blank" class="social-card">
+                        <h3>Discord -> PLUS GAMES</h3>
+                        <p data-i18n-key="discordDesc">Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!</p>
                     </a>
                 </div>
             </div>
@@ -681,7 +681,15 @@
             
             const buttons = document.querySelectorAll('.theme-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            evt.currentTarget.classList.add('active');
+            if(evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            } else {
+                buttons.forEach(btn => {
+                    if(btn.getAttribute('onclick').includes(themeName)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
         }
 
         function changeLanguage(lang) {
