@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Simulator X Plus</title>
+    <title>Pet Simulator X+ (Plus)</title>
     <style>
         :root {
             --primary-color: #5865F2;
@@ -151,26 +151,26 @@
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .feature-card {
             background-color: var(--card-bg);
-            padding: 30px;
+            padding: 25px 30px;
             border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: transform 0.2s;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateX(5px);
         }
 
         .feature-card h3 {
             color: var(--accent-color);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-size: 1.3rem;
         }
 
@@ -266,7 +266,7 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">PSX Plus</div>
+            <div class="logo">PSX + (Plus)</div>
             <ul class="nav-tabs">
                 <li class="nav-tab active" onclick="switchTab('home', event)">Home</li>
                 <li class="nav-tab" onclick="switchTab('updates', event)">Updates</li>
@@ -278,7 +278,7 @@
     <main>
         <section id="home" class="tab-content active">
             <div class="hero">
-                <h1>Pet Simulator X Plus</h1>
+                <h1>Pet Simulator X+ (Plus)</h1>
                 <p>The ultimate Roblox pet simulator experience combining the best mechanics of Pet Simulator X, Pet Simulator 99, and exclusive custom features built just for you!</p>
                 <a href="https://www.roblox.com" target="_blank" class="cta-button">Play on Roblox</a>
             </div>
@@ -340,7 +340,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Pet Simulator X Plus. Not officially affiliated with BIG Games.</p>
+        <p>&copy; 2026 Pet Simulator X+ (Plus). Not officially affiliated with BIG Games.</p>
     </footer>
 
     <script>
