@@ -307,7 +307,6 @@
             line-height: 1.6;
         }
 
-        /* Settings Styles */
         .setting-group {
             margin-bottom: 25px;
         }
@@ -360,7 +359,6 @@
             color: var(--text-color);
         }
 
-        /* Socials Styles */
         .socials-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -554,11 +552,9 @@
 
             document.getElementById(tabId).classList.add('active');
             
-            // If triggered from nav tab, mark it active
             if(evt && evt.currentTarget.classList.contains('nav-tab')) {
                 evt.currentTarget.classList.add('active');
             } else {
-                // If triggered from top utility bar or programmatic, find corresponding tab if exists
                 tabs.forEach(tab => {
                     if(tab.getAttribute('onclick').includes(tabId)) {
                         tab.classList.add('active');
