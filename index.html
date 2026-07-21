@@ -86,10 +86,10 @@
             letter-spacing: 1.5px;
         }
 
-        .header-right-group {
+        .nav-center-group {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .nav-tabs {
@@ -419,17 +419,17 @@
     <header>
         <div class="nav-container">
             <div class="logo">PSX + (Plus)</div>
-            <div class="header-right-group">
+            <div class="nav-center-group">
                 <ul class="nav-tabs">
                     <li class="nav-tab active" data-i18n-key="navHome" onclick="switchTab('home', event)">Home</li>
                     <li class="nav-tab" data-i18n-key="navUpdates" onclick="switchTab('updates', event)">Updates</li>
                     <li class="nav-tab" data-i18n-key="navSocials" onclick="switchTab('socials', event)">Socials</li>
                     <li class="nav-tab" data-i18n-key="navCredits" onclick="switchTab('credits', event)">Credits</li>
                 </ul>
-                <button class="settings-mini-btn" onclick="switchTab('settings', event)">
-                    ⚙️ Settings
-                </button>
             </div>
+            <button class="settings-mini-btn" onclick="switchTab('settings', event)">
+                ⚙️ Settings
+            </button>
         </div>
     </header>
 
