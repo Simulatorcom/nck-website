@@ -6,13 +6,12 @@
     <title>Pet Simulator X Plus</title>
     <style>
         :root {
-            --primary-color: #6c5ce7;
-            --secondary-color: #a29bfe;
-            --accent-color: #fdcb6e;
-            --dark-bg: #1e1e2f;
-            --card-bg: #2d2d44;
+            --primary-color: #5865F2;
+            --accent-color: #00ffcc;
+            --dark-bg: #0b0c10;
+            --card-bg: #1f2833;
             --text-color: #ffffff;
-            --text-muted: #b2bec3;
+            --text-muted: #c5c6c7;
         }
 
         * {
@@ -28,64 +27,66 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-image: radial-gradient(circle at 50% 20%, #1a1a2e 0%, var(--dark-bg) 70%);
         }
 
         header {
-            background: rgba(45, 45, 68, 0.95);
+            background: rgba(11, 12, 16, 0.9);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 15px 30px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--accent-color), #ff7675);
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffcc, #3399ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .nav-tabs {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             list-style: none;
         }
 
         .nav-tab {
-            padding: 8px 20px;
+            padding: 8px 22px;
             cursor: pointer;
-            font-weight: 600;
-            border-radius: 20px;
+            font-weight: 700;
+            border-radius: 12px;
             transition: all 0.3s ease;
             color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .nav-tab:hover, .nav-tab.active {
             background: var(--primary-color);
             color: var(--text-color);
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
         }
 
         main {
-            margin-top: 80px;
+            margin-top: 100px;
             flex: 1;
             padding: 40px 20px;
-            max-width: 1200px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             width: 100%;
@@ -93,7 +94,7 @@
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .tab-content.active {
@@ -101,74 +102,76 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .hero {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, var(--card-bg), #1a1a29);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 70px 30px;
+            background: linear-gradient(135deg, rgba(31, 40, 51, 0.8), rgba(15, 20, 28, 0.9));
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto 30px auto;
             line-height: 1.6;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 15px 35px;
+            background: linear-gradient(45deg, #00ffcc, #0077ff);
+            color: #0b0c10;
+            padding: 16px 40px;
             font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 30px;
+            font-weight: 800;
+            border-radius: 14px;
             text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(0, 255, 204, 0.3);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 204, 0.5);
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .feature-card {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 25px 30px;
+            border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s;
+            transition: transform 0.2s;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateX(5px);
         }
 
         .feature-card h3 {
             color: var(--accent-color);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
         }
 
         .feature-card p {
@@ -179,7 +182,7 @@
         .updates-container {
             background-color: var(--card-bg);
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.05);
             overflow-x: auto;
         }
@@ -198,61 +201,54 @@
 
         .updates-table th, .updates-table td {
             padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .updates-table th {
-            background-color: rgba(108, 92, 231, 0.2);
+            background-color: rgba(0, 255, 204, 0.1);
             color: var(--text-color);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .updates-table td {
             color: var(--text-muted);
         }
 
-        .updates-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
-
-        .credits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+        .credits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .credit-card {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
+            padding: 25px 30px;
+            border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .credit-card h3 {
-            margin-bottom: 10px;
             font-size: 1.3rem;
-        }
-
-        .credit-role {
             color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
         }
 
         .credit-card p {
             color: var(--text-muted);
             font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #151521;
+            padding: 25px;
+            background-color: #07080a;
             color: var(--text-muted);
             font-size: 0.9rem;
             margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         @media (max-width: 768px) {
@@ -261,7 +257,7 @@
                 gap: 15px;
             }
             main {
-                margin-top: 130px;
+                margin-top: 120px;
             }
         }
     </style>
@@ -282,7 +278,7 @@
     <main>
         <section id="home" class="tab-content active">
             <div class="hero">
-                <h1>Welcome to Pet Simulator X Plus!</h1>
+                <h1>Pet Simulator X Plus</h1>
                 <p>The ultimate Roblox pet simulator experience combining the best mechanics of Pet Simulator X, Pet Simulator 99, and exclusive custom features built just for you!</p>
                 <a href="https://www.roblox.com" target="_blank" class="cta-button">Play on Roblox</a>
             </div>
@@ -326,21 +322,18 @@
         </section>
 
         <section id="credits" class="tab-content">
-            <div class="credits-grid">
+            <div class="credits-list">
                 <div class="credit-card">
                     <h3>Owner</h3>
-                    <span class="credit-role">Game Creator</span>
                     <p>𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
                 </div>
                 <div class="credit-card">
-                    <h3>Developers</h3>
-                    <span class="credit-role">Scripting & Systems</span>
-                    <p>Nck</p>
+                    <h3>Scripter</h3>
+                    <p>Nck, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
                 </div>
                 <div class="credit-card">
                     <h3>Builder</h3>
-                    <span class="credit-role">Map & World Design</span>
-                    <p>SENSEI</p>
+                    <p>SENSEI, fireflya, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
                 </div>
             </div>
         </section>
