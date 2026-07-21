@@ -495,11 +495,11 @@
                 <h2 data-i18n-key="socialsTitle">Our Socials</h2>
                 <div class="socials-grid">
                     <a href="https://www.youtube.com/@UltrixLOL" target="_blank" class="social-card">
-                        <h3>Youtube -> UltrixLOL</h3>
+                        <h3>Youtube — UltrixLOL</h3>
                         <p data-i18n-key="youtubeDesc">Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!</p>
                     </a>
                     <a href="https://discord.gg/fZytpCrdS" target="_blank" class="social-card">
-                        <h3>Discord -> PLUS GAMES</h3>
+                        <h3>Discord — PLUS GAMES</h3>
                         <p data-i18n-key="discordDesc">Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!</p>
                     </a>
                 </div>
@@ -512,9 +512,9 @@
                 <div class="setting-group">
                     <label data-i18n-key="themeLabel">Theme Mode</label>
                     <div class="theme-switches">
-                        <button class="theme-btn" onclick="setTheme('light', event)" data-i18n-key="themeLight">Light Mode</button>
-                        <button class="theme-btn active" onclick="setTheme('normal', event)" data-i18n-key="themeNormal">Normal Mode</button>
-                        <button class="theme-btn" onclick="setTheme('dark', event)" data-i18n-key="themeDark">Dark Mode</button>
+                        <button type="button" class="theme-btn" onclick="setTheme('light', event)" data-i18n-key="themeLight">Light Mode</button>
+                        <button type="button" class="theme-btn active" onclick="setTheme('normal', event)" data-i18n-key="themeNormal">Normal Mode</button>
+                        <button type="button" class="theme-btn" onclick="setTheme('dark', event)" data-i18n-key="themeDark">Dark Mode</button>
                     </div>
                 </div>
                 <div class="setting-group">
@@ -681,11 +681,12 @@
             
             const buttons = document.querySelectorAll('.theme-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            if(evt && evt.currentTarget) {
+            
+            if (evt && evt.currentTarget) {
                 evt.currentTarget.classList.add('active');
             } else {
                 buttons.forEach(btn => {
-                    if(btn.getAttribute('onclick').includes(themeName)) {
+                    if (btn.getAttribute('onclick').includes(themeName)) {
                         btn.classList.add('active');
                     }
                 });
