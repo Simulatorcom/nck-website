@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSX+ (Plus)</title>
+    <title>PLUS GAMES</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
@@ -79,19 +79,31 @@
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            position: relative;
+            width: 100%;
+            padding: 15px 30px;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 55px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 6px;
         }
 
         .logo {
             font-size: 1.6rem;
             font-weight: 900;
-            background: linear-gradient(45deg, var(--accent-color), #3399ff);
+            background: linear-gradient(135deg, #ffffff, #888888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -100,8 +112,8 @@
 
         .nav-center-group {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 15px;
         }
 
         .nav-tabs {
@@ -134,17 +146,25 @@
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
         }
 
+        .settings-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 55px;
+        }
+
         .settings-mini-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-muted);
-            padding: 8px 14px;
+            width: 115px;
+            height: 40px;
             border-radius: 10px;
             font-size: 0.9rem;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             transition: all 0.2s;
         }
@@ -152,12 +172,83 @@
         .settings-mini-btn i {
             width: 16px;
             height: 16px;
+            flex-shrink: 0;
         }
 
         .settings-mini-btn:hover {
             background: var(--primary-color);
             color: var(--text-color);
             border-color: transparent;
+        }
+
+        .settings-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            height: 100vh;
+            background-color: var(--card-bg);
+            border-left: 1px solid rgba(255,255,255,0.08);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .settings-drawer.open {
+            right: 0;
+        }
+
+        .settings-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .settings-drawer-header h2 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+
+        .close-drawer-btn {
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-drawer-btn:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
 
         main {
@@ -231,6 +322,85 @@
             box-shadow: 0 8px 25px rgba(0, 255, 204, 0.5);
         }
 
+        .influence-section {
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .influence-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .influence-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .influence-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .influence-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .inf-card {
+            border-radius: 20px;
+            padding: 35px;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .inf-card.visits {
+            background: linear-gradient(135deg, #10b981, #047857);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .inf-card.discord {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .inf-card.players {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .inf-card h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .inf-card h4 {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .inf-card p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -262,7 +432,7 @@
             line-height: 1.5;
         }
 
-        .updates-container, .settings-container, .socials-container {
+        .updates-container, .socials-container {
             background-color: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
@@ -272,7 +442,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .updates-container h2, .settings-container h2, .socials-container h2 {
+        .updates-container h2, .socials-container h2 {
             margin-bottom: 20px;
             color: var(--accent-color);
             font-size: 1.8rem;
@@ -430,11 +600,21 @@
                 grid-template-columns: 1fr;
             }
             .nav-container {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 gap: 15px;
+                padding: 15px 20px;
+                justify-items: center;
+            }
+            .logo-wrapper, .settings-wrapper {
+                margin: 0;
+                justify-content: center;
             }
             main {
-                margin-top: 140px;
+                margin-top: 190px;
+            }
+            .settings-drawer {
+                width: 100%;
+                right: -100%;
             }
         }
     </style>
@@ -443,20 +623,50 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">PSX+ (Plus)</div>
+            <div class="logo-wrapper">
+                <img src="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png" alt="Logo Icon" class="logo-icon">
+                <div class="logo">PLUS GAMES</div>
+            </div>
             <div class="nav-center-group">
                 <ul class="nav-tabs">
                     <li class="nav-tab active" data-i18n-key="navHome" onclick="switchTab('home', event)"><i data-lucide="home"></i> Home</li>
                     <li class="nav-tab" data-i18n-key="navUpdates" onclick="switchTab('updates', event)"><i data-lucide="refresh-cw"></i> Updates</li>
                     <li class="nav-tab" data-i18n-key="navSocials" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> Socials</li>
+                    <li class="nav-tab" data-i18n-key="navCommunity" onclick="switchTab('community', event)"><i data-lucide="users"></i> Community</li>
                     <li class="nav-tab" data-i18n-key="navCredits" onclick="switchTab('credits', event)"><i data-lucide="award"></i> Credits</li>
                 </ul>
             </div>
-            <button class="settings-mini-btn" onclick="switchTab('settings', event)">
-                <i data-lucide="settings"></i> Settings
-            </button>
+            <div class="settings-wrapper">
+                <button class="settings-mini-btn" onclick="toggleSettingsDrawer()">
+                    <i data-lucide="settings"></i> Settings
+                </button>
+            </div>
         </div>
     </header>
+
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleSettingsDrawer()"></div>
+    <div class="settings-drawer" id="settingsDrawer">
+        <div class="settings-drawer-header">
+            <h2 data-i18n-key="settingsTitle">Settings</h2>
+            <button class="close-drawer-btn" onclick="toggleSettingsDrawer()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="setting-group">
+            <label data-i18n-key="themeLabel">Theme Mode</label>
+            <div class="theme-switches">
+                <button type="button" class="theme-btn" onclick="setTheme('light', event)" data-i18n-key="themeLight">Light</button>
+                <button type="button" class="theme-btn active" onclick="setTheme('normal', event)" data-i18n-key="themeNormal">Normal</button>
+                <button type="button" class="theme-btn" onclick="setTheme('dark', event)" data-i18n-key="themeDark">Dark</button>
+            </div>
+        </div>
+        <div class="setting-group">
+            <label for="languageSelect" data-i18n-key="langLabel">Language</label>
+            <select id="languageSelect" class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="tr">Turkish</option>
+                <option value="de">Germany</option>
+            </select>
+        </div>
+    </div>
 
     <main>
         <section id="home" class="tab-content active">
@@ -478,6 +688,32 @@
                 <div class="feature-card">
                     <h3 data-i18n-key="feat3Title">Custom Content</h3>
                     <p data-i18n-key="feat3Desc">Discover completely unique, custom-made pets, exclusive enchantments, and events you won't find anywhere else!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="tab-content">
+            <div class="influence-section">
+                <div class="influence-header">
+                    <h2 data-i18n-key="infHeaderTitle">Community Influence</h2>
+                    <p data-i18n-key="infHeaderDesc">A quick look at the Plus Games community.</p>
+                </div>
+                <div class="influence-grid">
+                    <div class="inf-card visits">
+                        <h3>0+</h3>
+                        <h4 data-i18n-key="infVisitsTitle">Total Visits</h4>
+                        <p data-i18n-key="infVisitsDesc">Across all of our games - and still climbing.</p>
+                    </div>
+                    <div class="inf-card discord">
+                        <h3><i data-lucide="message-square" style="width: 32px; height: 32px; display: inline-block; vertical-align: middle;"></i> 0+</h3>
+                        <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
+                        <p data-i18n-key="infDiscordDesc">Chatting, trading, and hanging out every day.</p>
+                    </div>
+                    <div class="inf-card players">
+                        <h3><i data-lucide="users" style="width: 32px; height: 32px; display: inline-block; vertical-align: middle;"></i> 0+</h3>
+                        <h4 data-i18n-key="infPlayersTitle">Peak Players</h4>
+                        <p data-i18n-key="infPlayersDesc">Online in our games at the same time.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -520,28 +756,6 @@
             </div>
         </section>
 
-        <section id="settings" class="tab-content">
-            <div class="settings-container">
-                <h2 data-i18n-key="settingsTitle">Settings</h2>
-                <div class="setting-group">
-                    <label data-i18n-key="themeLabel">Theme Mode</label>
-                    <div class="theme-switches">
-                        <button type="button" class="theme-btn" onclick="setTheme('light', event)" data-i18n-key="themeLight">Light Mode</button>
-                        <button type="button" class="theme-btn active" onclick="setTheme('normal', event)" data-i18n-key="themeNormal">Normal Mode</button>
-                        <button type="button" class="theme-btn" onclick="setTheme('dark', event)" data-i18n-key="themeDark">Dark Mode</button>
-                    </div>
-                </div>
-                <div class="setting-group">
-                    <label for="languageSelect" data-i18n-key="langLabel">Language</label>
-                    <select id="languageSelect" class="lang-select" onchange="changeLanguage(this.value)">
-                        <option value="en">English</option>
-                        <option value="tr">Turkish</option>
-                        <option value="de">Germany</option>
-                    </select>
-                </div>
-            </div>
-        </section>
-
         <section id="credits" class="tab-content">
             <div class="credits-list">
                 <div class="credit-card">
@@ -570,10 +784,19 @@
                 navHome: "Home",
                 navUpdates: "Updates",
                 navSocials: "Socials",
+                navCommunity: "Community",
                 navCredits: "Credits",
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "The ultimate Roblox pet simulator experience combining the best mechanics of PSX+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!",
                 ctaPlay: "Play on Roblox",
+                infHeaderTitle: "Community Influence",
+                infHeaderDesc: "A quick look at the Plus Games community.",
+                infVisitsTitle: "Total Visits",
+                infVisitsDesc: "Across all of our games - and still climbing.",
+                infDiscordTitle: "Discord Members",
+                infDiscordDesc: "Chatting, trading, and hanging out every day.",
+                infPlayersTitle: "Peak Players",
+                infPlayersDesc: "Online in our games at the same time.",
                 feat1Title: "Classic PSX World",
                 feat1Desc: "Relive the nostalgia with classic worlds, unlocking areas, and hatching your favorite retro pets.",
                 feat2Title: "PS99 Mechanics",
@@ -591,9 +814,9 @@
                 youtubeDesc: "Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!",
                 settingsTitle: "Settings",
                 themeLabel: "Theme Mode",
-                themeLight: "Light Mode",
-                themeNormal: "Normal Mode",
-                themeDark: "Dark Mode",
+                themeLight: "Light",
+                themeNormal: "Normal",
+                themeDark: "Dark",
                 langLabel: "Language",
                 creditOwner: "Owner",
                 creditScripter: "Scripter",
@@ -604,10 +827,19 @@
                 navHome: "Ana Sayfa",
                 navUpdates: "Güncellemeler",
                 navSocials: "Sosyal Medya",
+                navCommunity: "Topluluk",
                 navCredits: "Emeği Geçenler",
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "PSX+ (Plus), Pet Simulator 99 mekaniklerini ve size özel özel özellikleri birleştiren nihai Roblox evcil hayvan simülatörü deneyimi!",
                 ctaPlay: "Roblox'ta Oyna",
+                infHeaderTitle: "Topluluk Etkisi",
+                infHeaderDesc: "Plus Games topluluğuna hızlı bir bakış.",
+                infVisitsTitle: "Toplam Ziyaret",
+                infVisitsDesc: "Tüm oyunlarımızda - ve hala artıyor.",
+                infDiscordTitle: "Discord Üyeleri",
+                infDiscordDesc: "Her gün sohbet ediyor, ticaret yapıyor ve takılıyoruz.",
+                infPlayersTitle: "Anlık En Fazla Oyuncu",
+                infPlayersDesc: "Aynı anda oyunlarımızda çevrimiçi.",
                 feat1Title: "Klasik PSX Dünyası",
                 feat1Desc: "Klasik dünyalar, alanların kilidini açma ve en sevdiğiniz retro evcil hayvanları yumurtadan çıkarma nostaljisini yeniden yaşayın.",
                 feat2Title: "PS99 Mekanikleri",
@@ -625,9 +857,9 @@
                 youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici vurguları için kanalımıza abone olun!",
                 settingsTitle: "Ayarlar",
                 themeLabel: "Tema Modu",
-                themeLight: "Açık Mod",
-                themeNormal: "Normal Mod",
-                themeDark: "Koyu Mod",
+                themeLight: "Açık",
+                themeNormal: "Normal",
+                themeDark: "Koyu",
                 langLabel: "Dil",
                 creditOwner: "Sahibi",
                 creditScripter: "Kodlayıcı",
@@ -638,10 +870,19 @@
                 navHome: "Startseite",
                 navUpdates: "Updates",
                 navSocials: "Soziale Medien",
+                navCommunity: "Community",
                 navCredits: "Mitwirkende",
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "Das ultimative Roblox-Haustier-Simulator-Erlebnis, das die besten Mechaniken von PSX+ (Plus), Pet Simulator 99 und exklusiven Custom-Features vereint!",
                 ctaPlay: "Auf Roblox spielen",
+                infHeaderTitle: "Community-Einfluss",
+                infHeaderDesc: "Ein kurzer Blick auf die Plus Games Community.",
+                infVisitsTitle: "Gesamte Besuche",
+                infVisitsDesc: "In all unseren Spielen – und es wächst weiter.",
+                infDiscordTitle: "Discord-Mitglieder",
+                infDiscordDesc: "Jeden Tag am Chatten, Handeln und Abhängen.",
+                infPlayersTitle: "Gleichzeitige Spieler",
+                infPlayersDesc: "Zur gleichen Zeit in unseren Spielen online.",
                 feat1Title: "Klassische PSX Welt",
                 feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, dem Freischalten von Bereichen und dem Ausbrüten deiner Lieblings-Retropets.",
                 feat2Title: "PS99 Mechaniken",
@@ -659,9 +900,9 @@
                 youtubeDesc: "Abonniere unseren Kanal für neue Videos, Einblicke, Update-Trailer und Entwickler-Highlights!",
                 settingsTitle: "Einstellungen",
                 themeLabel: "Themenmodus",
-                themeLight: "Heller Modus",
-                themeNormal: "Normaler Modus",
-                themeDark: "Dunkler Modus",
+                themeLight: "Hell",
+                themeNormal: "Normal",
+                themeDark: "Dunkel",
                 langLabel: "Sprache",
                 creditOwner: "Besitzer",
                 creditScripter: "Skripter",
@@ -674,6 +915,7 @@
             navHome: 'home',
             navUpdates: 'refresh-cw',
             navSocials: 'share-2',
+            navCommunity: 'users',
             navCredits: 'award'
         };
 
@@ -695,6 +937,13 @@
                     }
                 });
             }
+        }
+
+        function toggleSettingsDrawer() {
+            const drawer = document.getElementById('settingsDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('open');
         }
 
         function setTheme(themeName, evt) {
@@ -723,8 +972,13 @@
                     if (el.classList.contains('nav-tab')) {
                         const iconName = iconMap[key] || 'circle';
                         el.innerHTML = `<i data-lucide="${iconName}"></i> ${translations[lang][key]}`;
-                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3') {
-                        el.innerHTML = translations[lang][key];
+                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'H4') {
+                        if (el.querySelector('i')) {
+                            const iconHtml = el.querySelector('i').outerHTML;
+                            el.innerHTML = iconHtml + ' ' + translations[lang][key];
+                        } else {
+                            el.innerHTML = translations[lang][key];
+                        }
                     } else {
                         el.textContent = translations[lang][key];
                     }
@@ -733,7 +987,6 @@
             lucide.createIcons();
         }
 
-        // Initialize Lucide icons on load
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
         });
