@@ -155,7 +155,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
 
@@ -258,7 +258,10 @@
             border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
             .nav-container {
                 flex-direction: column;
                 gap: 15px;
