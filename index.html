@@ -77,24 +77,6 @@
             background-image: var(--gradient-bg);
         }
 
-        /* FPS Counter Widget Style */
-        #fpsCounter {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.75);
-            color: #00ffcc;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 3000;
-            display: none;
-            border: 1px solid rgba(0, 255, 204, 0.3);
-            pointer-events: none;
-        }
-
         header {
             background: var(--header-bg);
             backdrop-filter: blur(10px);
@@ -699,9 +681,6 @@
 </head>
 <body data-theme="normal">
 
-    <!-- FPS Counter Element -->
-    <div id="fpsCounter">FPS: 60</div>
-
     <header>
         <div class="nav-container">
             <div class="logo-wrapper">
@@ -746,7 +725,7 @@
             <select id="languageSelect" class="lang-select" onchange="changeLanguage(this.value)">
                 <option value="en">English</option>
                 <option value="tr">Turkish</option>
-                <option value="de">Germany</option>
+                <option value="de">German</option>
             </select>
         </div>
 
@@ -754,17 +733,25 @@
             <label data-i18n-key="prefLabel">Preferences</label>
             
             <div class="setting-toggle-row">
-                <span data-i18n-key="settingFps">FPS Counter</span>
+                <span data-i18n-key="settingAnimations">UI Animations</span>
                 <label class="switch">
-                    <input type="checkbox" id="fpsToggle" onchange="toggleFpsCounter(this.checked)">
+                    <input type="checkbox" checked id="animToggle" onchange="toggleAnimations(this.checked)">
                     <span class="slider"></span>
                 </label>
             </div>
 
             <div class="setting-toggle-row">
-                <span data-i18n-key="settingAnimations">UI Animations</span>
+                <span data-i18n-key="settingBlur">Background Blur</span>
                 <label class="switch">
-                    <input type="checkbox" checked id="animToggle" onchange="toggleAnimations(this.checked)">
+                    <input type="checkbox" checked id="blurToggle" onchange="toggleBlur(this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-toggle-row">
+                <span data-i18n-key="settingHighContrast">High Contrast Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="contrastToggle" onchange="toggleContrast(this.checked)">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -922,8 +909,9 @@
                 themeDark: "Dark",
                 langLabel: "Language",
                 prefLabel: "Preferences",
-                settingFps: "FPS Counter",
                 settingAnimations: "UI Animations",
+                settingBlur: "Background Blur",
+                settingHighContrast: "High Contrast Mode",
                 creditOwner: "Owner",
                 creditScripter: "Scripter",
                 creditBuilder: "Builder",
@@ -945,22 +933,22 @@
                 infDiscordTitle: "Discord Üyeleri",
                 infDiscordDesc: "Her gün sohbet ediyor, ticaret yapıyor ve takılıyoruz.",
                 infPlayersTitle: "Anlık En Fazla Oyuncu",
-                infPlayersDesc: "Aynı anda oyunlarımızda çevrimiçi.",
+                infPlayersDesc: "Aynı anda oyunlarımızda çevrimiçi olanlar.",
                 feat1Title: "Klasik PSX Dünyası",
-                feat1Desc: "Klasik dünyalar, alanların kilidini açma ve en sevdiğiniz retro evcil hayvanları yumurtadan çıkarma nostaljisini yeniden yaşayın.",
+                feat1Desc: "Klasik dünyalar, kilidi açılan alanlar ve favori retro evcil hayvanlarınızı yumurtadan çıkararak nostaljiyi yeniden yaşayın.",
                 feat2Title: "PS99 Mekanikleri",
                 feat2Desc: "Gelişmiş ilerleme ve ticaret sistemleri dahil olmak üzere Pet Simulator 99'dan ilham alan modern oynanış iyileştirmelerinin tadını çıkarın.",
                 feat3Title: "Özel İçerik",
-                feat3Desc: "Başka hiçbir yerde bulamayacağınız tamamen benzersiz, özel yapım evcil hayvanları, özel büyüleri ve etkinlikleri keşfedin!",
-                updatesTitle: "Oyun Güncelleme Günlüğü",
+                feat3Desc: "Hiçbir yerde bulamayacağınız tamamen benzersiz, özel yapım evcil hayvanları, özel büyüleri ve etkinlikleri keşfedin!",
+                updatesTitle: "Oyun Güncellemeleri Günlüğü",
                 tableVer: "Sürüm",
-                tableDate: "Çıkış Tarihi",
+                tableDate: "Yayın Tarihi",
                 tableDetails: "Değişiklik Günlüğü / Detaylar",
                 comingSoon: "Çok Yakında",
                 noData: "Henüz Veri Yok.",
-                socialsTitle: "Sosyal Medyamız",
+                socialsTitle: "Sosyal Medya Hesaplarımız",
                 discordDesc: "Özel sızıntıları, erken güncelleme duyurularını almak ve diğer oyuncularla bağlantı kurmak için resmi Discord topluluğumuza katılın!",
-                youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici vurguları için kanalımıza abone olun!",
+                youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici öne çıkanları için kanalımıza abone olun!",
                 settingsTitle: "Ayarlar",
                 themeLabel: "Tema Modu",
                 themeLight: "Açık",
@@ -968,36 +956,37 @@
                 themeDark: "Koyu",
                 langLabel: "Dil",
                 prefLabel: "Tercihler",
-                settingFps: "FPS Sayacı",
                 settingAnimations: "Arayüz Animasyonları",
-                creditOwner: "Sahibi",
-                creditScripter: "Kodlayıcı",
-                creditBuilder: "İnşaatçı",
-                footerText: "&copy; 2026 PSX+ (Plus). BIG Games ile resmi bir bağlantısı yoktur."
+                settingBlur: "Arka Plan Bulanıklığı",
+                settingHighContrast: "Yüksek Kontrast Modu",
+                creditOwner: "Sahip",
+                creditScripter: "Yazılımcı (Scripter)",
+                creditBuilder: "İnşaatçı (Builder)",
+                footerText: "&copy; 2026 PSX+ (Plus). BIG Games ile resmi olarak bağlantılı değildir."
             },
             de: {
                 navHome: "Startseite",
                 navUpdates: "Updates",
-                navSocials: "Soziale Medien",
+                navSocials: "Socials",
                 navStats: "Statistiken",
-                navCredits: "Mitwirkende",
+                navCredits: "Credits",
                 heroTitle: "PSX+ (Plus)",
-                heroDesc: "Das ultimative Roblox-Haustier-Simulator-Erlebnis, das die besten Mechaniken von PSX+ (Plus), Pet Simulator 99 und exklusiven Custom-Features vereint!",
+                heroDesc: "Das ultimative Roblox-Pet-Simulator-Erlebnis, das die besten Mechaniken von PSX+ (Plus), Pet Simulator 99 und exklusiven Custom-Features vereint!",
                 ctaPlay: "Auf Roblox spielen",
                 infHeaderTitle: "Community-Statistiken",
-                infHeaderDesc: "Ein kurzer Blick auf die Plus Games Statistiken.",
+                infHeaderDesc: "Ein kurzer Blick auf die Statistiken der Plus Games Community.",
                 infVisitsTitle: "Gesamte Besuche",
-                infVisitsDesc: "In all unseren Spielen – und es wächst weiter.",
+                infVisitsDesc: "Über alle unsere Spiele hinweg - und es wächst weiter.",
                 infDiscordTitle: "Discord-Mitglieder",
-                infDiscordDesc: "Jeden Tag am Chatten, Handeln und Abhängen.",
-                infPlayersTitle: "Gleichzeitige Spieler",
-                infPlayersDesc: "Zur gleichen Zeit in unseren Spielen online.",
-                feat1Title: "Klassische PSX Welt",
-                feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, dem Freischalten von Bereichen und dem Ausbrüten deiner Lieblings-Retropets.",
-                feat2Title: "PS99 Mechaniken",
-                feat2Desc: "Genieße moderne Gameplay-Verbesserungen inspiriert von Pet Simulator 99, inklusive verbesserter Progression und Handelssysteme.",
+                infDiscordDesc: "Tägliches Chatten, Handeln und Abhängen.",
+                infPlayersTitle: "Höchststand Spieler",
+                infPlayersDesc: "Gleichzeitig online in unseren Spielen.",
+                feat1Title: "Klassische PSX-Welt",
+                feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, freischaltbaren Bereichen und dem Ausbrüten deiner Lieblings-Retro-Pets.",
+                feat2Title: "PS99-Mechaniken",
+                feat2Desc: "Genieße moderne Gameplay-Verbesserungen inspiriert von Pet Simulator 99, inklusive verbessertem Fortschritts- und Handelssystem.",
                 feat3Title: "Custom Content",
-                feat3Desc: "Entdecke völlig einzigartige, maßgeschneiderte Haustiere, exklusive Verzauberungen und Events, die du sonst nirgendwo findest!",
+                feat3Desc: "Entdecke völlig einzigartige, maßgeschneiderte Pets, exklusive Verzauberungen und Events, die du sonst nirgendwo findest!",
                 updatesTitle: "Spiel-Update-Protokoll",
                 tableVer: "Version",
                 tableDate: "Veröffentlichungsdatum",
@@ -1006,87 +995,31 @@
                 noData: "Noch keine Daten.",
                 socialsTitle: "Unsere Socials",
                 discordDesc: "Trete unserer offiziellen Discord-Community bei, um exklusive Leaks und frühe Update-Ankündigungen zu erhalten!",
-                youtubeDesc: "Abonniere unseren Kanal für neue Videos, Einblicke, Update-Trailer und Entwickler-Highlights!",
+                youtubeDesc: "Abonniere unseren Kanal für neue Videos, Sneak Peeks, Update-Trailer und Entwickler-Highlights!",
                 settingsTitle: "Einstellungen",
-                themeLabel: "Themenmodus",
+                themeLabel: "Theme-Modus",
                 themeLight: "Hell",
                 themeNormal: "Normal",
                 themeDark: "Dunkel",
                 langLabel: "Sprache",
                 prefLabel: "Präferenzen",
-                settingFps: "FPS-Anzeige",
                 settingAnimations: "UI-Animationen",
-                creditOwner: "Besitzer",
+                settingBlur: "Hintergrund-Unschärfe",
+                settingHighContrast: "Hoher Kontrast",
+                creditOwner: "Inhaber",
                 creditScripter: "Skripter",
                 creditBuilder: "Builder",
-                footerText: "&copy; 2026 PSX+ (Plus). Nicht offiziell mit BIG Games verbunden."
+                footerText: "&copy; 2026 PSX+ (Plus). Nicht offiziell mit BIG Games affiliiert."
             }
         };
 
-        const iconMap = {
-            navHome: 'home',
-            navUpdates: 'refresh-cw',
-            navSocials: 'share-2',
-            navStats: 'bar-chart-2',
-            navCredits: 'award'
-        };
-
-        // FPS Counter Logik
-        let fpsInterval = null;
-        function toggleFpsCounter(enabled) {
-            const fpsEl = document.getElementById('fpsCounter');
-            if (enabled) {
-                fpsEl.style.display = 'block';
-                let lastTime = performance.now();
-                let frameCount = 0;
-                
-                fpsInterval = setInterval(() => {
-                    const now = performance.now();
-                    const delta = (now - lastTime) / 1000;
-                    const fps = Math.round(frameCount / delta);
-                    fpsEl.textContent = `FPS: ${fps}`;
-                    frameCount = 0;
-                    lastTime = now;
-                }, 1000);
-
-                // Frame-Zähler Update Loop
-                window.requestAnimationFrame(function countFrame() {
-                    if (!document.getElementById('fpsToggle').checked) return;
-                    frameCount++;
-                    window.requestAnimationFrame(countFrame);
-                });
-            } else {
-                fpsEl.style.display = 'none';
-                if (fpsInterval) clearInterval(fpsInterval);
-            }
-        }
-
-        // UI Animationen Logik
-        function toggleAnimations(enabled) {
-            if (enabled) {
-                document.body.classList.remove('no-animations');
-            } else {
-                document.body.classList.add('no-animations');
-            }
-        }
-
-        function switchTab(tabId, evt) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
+        function switchTab(tabId, event) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
             
-            if(evt && evt.currentTarget.classList.contains('nav-tab')) {
-                evt.currentTarget.classList.add('active');
-            } else {
-                tabs.forEach(tab => {
-                    if(tab.getAttribute('onclick').includes(tabId)) {
-                        tab.classList.add('active');
-                    }
-                });
+            document.getElementById(tabId).classList.add('active');
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
             }
         }
 
@@ -1097,21 +1030,13 @@
             overlay.classList.toggle('open');
         }
 
-        function setTheme(themeName, evt) {
-            document.body.setAttribute('data-theme', themeName);
+        function setTheme(themeName, event) {
             document.documentElement.setAttribute('data-theme', themeName);
+            document.body.setAttribute('data-theme', themeName);
             
-            const buttons = document.querySelectorAll('.theme-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            if (evt && evt.currentTarget) {
-                evt.currentTarget.classList.add('active');
-            } else {
-                buttons.forEach(btn => {
-                    if (btn.getAttribute('onclick').includes(themeName)) {
-                        btn.classList.add('active');
-                    }
-                });
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
             }
         }
 
@@ -1119,23 +1044,46 @@
             const elements = document.querySelectorAll('[data-i18n-key]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n-key');
-                if (translations[lang] && translations[lang][key]) {
-                    if (el.classList.contains('nav-tab')) {
-                        const iconName = iconMap[key] || 'circle';
-                        el.innerHTML = `<i data-lucide="${iconName}"></i> ${translations[lang][key]}`;
-                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'SPAN') {
-                        el.textContent = translations[lang][key];
+                if(translations[lang] && translations[lang][key]) {
+                    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
                     } else {
-                        el.textContent = translations[lang][key];
+                        el.innerHTML = translations[lang][key];
                     }
                 }
             });
-            lucide.createIcons();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
+        function toggleAnimations(enable) {
+            if(enable) {
+                document.body.classList.remove('no-animations');
+            } else {
+                document.body.classList.add('no-animations');
+            }
+        }
+
+        function toggleBlur(enable) {
+            const header = document.querySelector('header');
+            const overlay = document.querySelector('.drawer-overlay');
+            if(enable) {
+                header.style.backdropFilter = 'blur(10px)';
+                overlay.style.backdropFilter = 'blur(4px)';
+            } else {
+                header.style.backdropFilter = 'none';
+                overlay.style.backdropFilter = 'none';
+            }
+        }
+
+        function toggleContrast(enable) {
+            if(enable) {
+                document.documentElement.style.setProperty('--border-color', 'rgba(255, 255, 255, 0.4)');
+            } else {
+                document.documentElement.style.removeProperty('--border-color');
+            }
+        }
+
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
 </body>
 </html>
