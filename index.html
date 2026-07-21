@@ -12,20 +12,28 @@
             --dark-bg: #121212;
             --card-bg: #1e1e1e;
             --text-color: #ffffff;
-            --text-muted: #ffffff;
+            --text-muted: #aaaaaa;
             --header-bg: rgba(18, 18, 18, 0.9);
             --gradient-bg: radial-gradient(circle at 50% 20%, #2b2b2b 0%, var(--dark-bg) 70%);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-speed: 0.3s;
+        }
+
+        body.no-animations * {
+            transition: none !important;
+            animation: none !important;
         }
 
         [data-theme="light"] {
             --primary-color: #4350e6;
             --accent-color: #008f6b;
-            --dark-bg: #f0f2f5;
+            --dark-bg: #f4f6f9;
             --card-bg: #ffffff;
-            --text-color: #ffffff;
-            --text-muted: #ffffff;
+            --text-color: #1a1a1a;
+            --text-muted: #555555;
             --header-bg: rgba(255, 255, 255, 0.9);
             --gradient-bg: radial-gradient(circle at 50% 20%, #e4e6eb 0%, var(--dark-bg) 70%);
+            --border-color: rgba(0, 0, 0, 0.1);
         }
 
         [data-theme="dark"] {
@@ -34,9 +42,10 @@
             --dark-bg: #121212;
             --card-bg: #181818;
             --text-color: #ffffff;
-            --text-muted: #ffffff;
+            --text-muted: #aaaaaa;
             --header-bg: rgba(24, 24, 24, 0.9);
             --gradient-bg: var(--dark-bg);
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         [data-theme="normal"] {
@@ -45,9 +54,10 @@
             --dark-bg: #121212;
             --card-bg: #1e1e1e;
             --text-color: #ffffff;
-            --text-muted: #ffffff;
+            --text-muted: #aaaaaa;
             --header-bg: rgba(18, 18, 18, 0.9);
             --gradient-bg: radial-gradient(circle at 50% 20%, #2b2b2b 0%, var(--dark-bg) 70%);
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -55,7 +65,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
 
         body {
@@ -67,6 +77,24 @@
             background-image: var(--gradient-bg);
         }
 
+        /* FPS Counter Widget Style */
+        #fpsCounter {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #00ffcc;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 3000;
+            display: none;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            pointer-events: none;
+        }
+
         header {
             background: var(--header-bg);
             backdrop-filter: blur(10px);
@@ -75,7 +103,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-container {
@@ -103,7 +131,7 @@
         .logo {
             font-size: 1.6rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff, #888888);
+            background: linear-gradient(135deg, var(--text-color), var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -128,8 +156,8 @@
             font-weight: 700;
             border-radius: 12px;
             transition: all 0.3s ease;
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-color);
+            background: rgba(128, 128, 128, 0.08);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -153,9 +181,9 @@
         }
 
         .settings-mini-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: rgba(128, 128, 128, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             width: 115px;
             height: 40px;
             border-radius: 10px;
@@ -188,13 +216,14 @@
             width: 400px;
             height: 100vh;
             background-color: var(--card-bg);
-            border-left: 1px solid rgba(255,255,255,0.08);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            border-left: 1px solid var(--border-color);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.3);
             z-index: 2000;
             display: flex;
             flex-direction: column;
             padding: 30px;
             transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
         }
 
         .settings-drawer.open {
@@ -209,14 +238,14 @@
         }
 
         .settings-drawer-header h2 {
-            color: #ffffff;
+            color: var(--text-color);
             font-size: 1.8rem;
         }
 
         .close-drawer-btn {
-            background: rgba(255,255,255,0.05);
+            background: rgba(128, 128, 128, 0.1);
             border: none;
-            color: #ffffff;
+            color: var(--text-color);
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -280,9 +309,9 @@
             padding: 70px 30px;
             background-color: var(--card-bg);
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid var(--border-color);
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
@@ -291,13 +320,12 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 15px;
-            color: #ffffff;
-            -webkit-text-fill-color: #ffffff;
+            color: var(--text-color);
         }
 
         .hero p {
             font-size: 1.15rem;
-            color: #ffffff;
+            color: var(--text-muted);
             max-width: 650px;
             margin: 0 auto 30px auto;
             line-height: 1.6;
@@ -306,20 +334,23 @@
         .cta-button {
             display: inline-block;
             background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             padding: 16px 40px;
             font-size: 1.1rem;
             font-weight: 800;
             border-radius: 14px;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: transparent;
         }
 
         .influence-section {
@@ -335,11 +366,11 @@
         .influence-header h2 {
             font-size: 2.2rem;
             margin-bottom: 8px;
-            color: #ffffff;
+            color: var(--text-color);
         }
 
         .influence-header p {
-            color: #ffffff;
+            color: var(--text-muted);
             font-size: 1.1rem;
         }
 
@@ -353,8 +384,9 @@
         .inf-card {
             border-radius: 20px;
             padding: 35px;
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -362,27 +394,12 @@
             justify-content: center;
         }
 
-        .inf-card.visits {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .inf-card.discord {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .inf-card.players {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
         .inf-card h3 {
             font-size: 3rem;
             font-weight: 900;
             margin-bottom: 5px;
             line-height: 1;
-            color: #ffffff;
+            color: var(--text-color);
         }
 
         .inf-card h4 {
@@ -395,13 +412,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ffffff;
+            color: var(--text-color);
         }
 
         .inf-card p {
             font-size: 1.05rem;
-            opacity: 0.9;
-            color: #ffffff;
+            color: var(--text-muted);
         }
 
         .features-grid {
@@ -413,11 +429,11 @@
 
         .feature-card {
             background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border-color);
             padding: 30px;
             border-radius: 16px;
             transition: transform 0.2s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .feature-card:hover {
@@ -425,29 +441,29 @@
         }
 
         .feature-card h3 {
-            color: #ffffff;
+            color: var(--text-color);
             margin-bottom: 12px;
             font-size: 1.3rem;
         }
 
         .feature-card p {
-            color: #ffffff;
+            color: var(--text-muted);
             line-height: 1.5;
         }
 
         .updates-container, .socials-container {
             background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border-color);
             padding: 30px;
             border-radius: 16px;
             max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .updates-container h2, .socials-container h2 {
             margin-bottom: 20px;
-            color: #ffffff;
+            color: var(--text-color);
             font-size: 1.8rem;
         }
 
@@ -459,17 +475,17 @@
 
         .updates-table th, .updates-table td {
             padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .updates-table th {
-            background-color: rgba(255, 255, 255, 0.03);
-            color: #ffffff;
+            background-color: rgba(128, 128, 128, 0.05);
+            color: var(--text-color);
             font-weight: 700;
         }
 
         .updates-table td {
-            color: #ffffff;
+            color: var(--text-muted);
         }
 
         .credits-list {
@@ -484,20 +500,20 @@
             background-color: var(--card-bg);
             padding: 25px 30px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             gap: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .credit-card h3 {
             font-size: 1.3rem;
-            color: #ffffff;
+            color: var(--text-color);
         }
 
         .credit-card p {
-            color: #ffffff;
+            color: var(--text-muted);
             font-size: 1.1rem;
             line-height: 1.6;
         }
@@ -510,7 +526,7 @@
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--text-color);
         }
 
         .theme-switches {
@@ -519,9 +535,9 @@
         }
 
         .theme-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: rgba(128, 128, 128, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
@@ -532,7 +548,7 @@
         }
 
         .theme-btn.active {
-            background: #4b5563;
+            background: var(--primary-color);
             color: #ffffff;
             border-color: transparent;
         }
@@ -540,9 +556,9 @@
         .lang-select {
             width: 100%;
             padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: rgba(128, 128, 128, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
             border-radius: 10px;
             font-size: 1rem;
             outline: none;
@@ -551,7 +567,66 @@
 
         .lang-select option {
             background-color: var(--card-bg);
-            color: #ffffff;
+            color: var(--text-color);
+        }
+
+        .setting-toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(128, 128, 128, 0.04);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .setting-toggle-row span {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
         }
 
         .socials-grid {
@@ -562,7 +637,7 @@
 
         .social-card {
             background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border-color);
             padding: 25px;
             border-radius: 14px;
             display: flex;
@@ -578,12 +653,12 @@
         }
 
         .social-card h3 {
-            color: #ffffff;
+            color: var(--text-color);
             font-size: 1.3rem;
         }
 
         .social-card p {
-            color: #ffffff;
+            color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.4;
         }
@@ -592,10 +667,10 @@
             text-align: center;
             padding: 25px;
             background-color: var(--header-bg);
-            color: #ffffff;
+            color: var(--text-muted);
             font-size: 0.9rem;
             margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-top: 1px solid var(--border-color);
         }
 
         @media (max-width: 900px) {
@@ -624,6 +699,9 @@
 </head>
 <body data-theme="normal">
 
+    <!-- FPS Counter Element -->
+    <div id="fpsCounter">FPS: 60</div>
+
     <header>
         <div class="nav-container">
             <div class="logo-wrapper">
@@ -635,7 +713,7 @@
                     <li class="nav-tab active" data-i18n-key="navHome" onclick="switchTab('home', event)"><i data-lucide="home"></i> Home</li>
                     <li class="nav-tab" data-i18n-key="navUpdates" onclick="switchTab('updates', event)"><i data-lucide="refresh-cw"></i> Updates</li>
                     <li class="nav-tab" data-i18n-key="navSocials" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> Socials</li>
-                    <li class="nav-tab" data-i18n-key="navCommunity" onclick="switchTab('community', event)"><i data-lucide="users"></i> Community</li>
+                    <li class="nav-tab" data-i18n-key="navStats" onclick="switchTab('stats', event)"><i data-lucide="bar-chart-2"></i> Stats</li>
                     <li class="nav-tab" data-i18n-key="navCredits" onclick="switchTab('credits', event)"><i data-lucide="award"></i> Credits</li>
                 </ul>
             </div>
@@ -653,6 +731,7 @@
             <h2 data-i18n-key="settingsTitle">Settings</h2>
             <button class="close-drawer-btn" onclick="toggleSettingsDrawer()"><i data-lucide="x"></i></button>
         </div>
+        
         <div class="setting-group">
             <label data-i18n-key="themeLabel">Theme Mode</label>
             <div class="theme-switches">
@@ -661,6 +740,7 @@
                 <button type="button" class="theme-btn" onclick="setTheme('dark', event)" data-i18n-key="themeDark">Dark</button>
             </div>
         </div>
+
         <div class="setting-group">
             <label for="languageSelect" data-i18n-key="langLabel">Language</label>
             <select id="languageSelect" class="lang-select" onchange="changeLanguage(this.value)">
@@ -668,6 +748,26 @@
                 <option value="tr">Turkish</option>
                 <option value="de">Germany</option>
             </select>
+        </div>
+
+        <div class="setting-group">
+            <label data-i18n-key="prefLabel">Preferences</label>
+            
+            <div class="setting-toggle-row">
+                <span data-i18n-key="settingFps">FPS Counter</span>
+                <label class="switch">
+                    <input type="checkbox" id="fpsToggle" onchange="toggleFpsCounter(this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-toggle-row">
+                <span data-i18n-key="settingAnimations">UI Animations</span>
+                <label class="switch">
+                    <input type="checkbox" checked id="animToggle" onchange="toggleAnimations(this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
     </div>
 
@@ -695,11 +795,11 @@
             </div>
         </section>
 
-        <section id="community" class="tab-content">
+        <section id="stats" class="tab-content">
             <div class="influence-section">
                 <div class="influence-header">
-                    <h2 data-i18n-key="infHeaderTitle">Community Influence</h2>
-                    <p data-i18n-key="infHeaderDesc">A quick look at the Plus Games community.</p>
+                    <h2 data-i18n-key="infHeaderTitle">Community Stats</h2>
+                    <p data-i18n-key="infHeaderDesc">A quick look at the Plus Games community statistics.</p>
                 </div>
                 <div class="influence-grid">
                     <div class="inf-card visits">
@@ -708,12 +808,12 @@
                         <p data-i18n-key="infVisitsDesc">Across all of our games - and still climbing.</p>
                     </div>
                     <div class="inf-card discord">
-                        <h3><i data-lucide="message-square" style="width: 32px; height: 32px; display: inline-block; vertical-align: middle;"></i> 0+</h3>
+                        <h3>0+</h3>
                         <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
                         <p data-i18n-key="infDiscordDesc">Chatting, trading, and hanging out every day.</p>
                     </div>
                     <div class="inf-card players">
-                        <h3><i data-lucide="users" style="width: 32px; height: 32px; display: inline-block; vertical-align: middle;"></i> 0+</h3>
+                        <h3>0+</h3>
                         <h4 data-i18n-key="infPlayersTitle">Peak Players</h4>
                         <p data-i18n-key="infPlayersDesc">Online in our games at the same time.</p>
                     </div>
@@ -787,13 +887,13 @@
                 navHome: "Home",
                 navUpdates: "Updates",
                 navSocials: "Socials",
-                navCommunity: "Community",
+                navStats: "Stats",
                 navCredits: "Credits",
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "The ultimate Roblox pet simulator experience combining the best mechanics of PSX+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!",
                 ctaPlay: "Play on Roblox",
-                infHeaderTitle: "Community Influence",
-                infHeaderDesc: "A quick look at the Plus Games community.",
+                infHeaderTitle: "Community Stats",
+                infHeaderDesc: "A quick look at the Plus Games community statistics.",
                 infVisitsTitle: "Total Visits",
                 infVisitsDesc: "Across all of our games - and still climbing.",
                 infDiscordTitle: "Discord Members",
@@ -821,6 +921,9 @@
                 themeNormal: "Normal",
                 themeDark: "Dark",
                 langLabel: "Language",
+                prefLabel: "Preferences",
+                settingFps: "FPS Counter",
+                settingAnimations: "UI Animations",
                 creditOwner: "Owner",
                 creditScripter: "Scripter",
                 creditBuilder: "Builder",
@@ -830,13 +933,13 @@
                 navHome: "Ana Sayfa",
                 navUpdates: "Güncellemeler",
                 navSocials: "Sosyal Medya",
-                navCommunity: "Topluluk",
+                navStats: "İstatistikler",
                 navCredits: "Emeği Geçenler",
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "PSX+ (Plus), Pet Simulator 99 mekaniklerini ve size özel özel özellikleri birleştiren nihai Roblox evcil hayvan simülatörü deneyimi!",
                 ctaPlay: "Roblox'ta Oyna",
-                infHeaderTitle: "Topluluk Etkisi",
-                infHeaderDesc: "Plus Games topluluğuna hızlı bir bakış.",
+                infHeaderTitle: "Topluluk İstatistikleri",
+                infHeaderDesc: "Plus Games topluluk istatistiklerine hızlı bir bakış.",
                 infVisitsTitle: "Toplam Ziyaret",
                 infVisitsDesc: "Tüm oyunlarımızda - ve hala artıyor.",
                 infDiscordTitle: "Discord Üyeleri",
@@ -864,6 +967,9 @@
                 themeNormal: "Normal",
                 themeDark: "Koyu",
                 langLabel: "Dil",
+                prefLabel: "Tercihler",
+                settingFps: "FPS Sayacı",
+                settingAnimations: "Arayüz Animasyonları",
                 creditOwner: "Sahibi",
                 creditScripter: "Kodlayıcı",
                 creditBuilder: "İnşaatçı",
@@ -873,13 +979,13 @@
                 navHome: "Startseite",
                 navUpdates: "Updates",
                 navSocials: "Soziale Medien",
-                navCommunity: "Community",
+                navStats: "Statistiken",
                 navCredits: "Mitwirkende",
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "Das ultimative Roblox-Haustier-Simulator-Erlebnis, das die besten Mechaniken von PSX+ (Plus), Pet Simulator 99 und exklusiven Custom-Features vereint!",
                 ctaPlay: "Auf Roblox spielen",
-                infHeaderTitle: "Community-Einfluss",
-                infHeaderDesc: "Ein kurzer Blick auf die Plus Games Community.",
+                infHeaderTitle: "Community-Statistiken",
+                infHeaderDesc: "Ein kurzer Blick auf die Plus Games Statistiken.",
                 infVisitsTitle: "Gesamte Besuche",
                 infVisitsDesc: "In all unseren Spielen – und es wächst weiter.",
                 infDiscordTitle: "Discord-Mitglieder",
@@ -907,6 +1013,9 @@
                 themeNormal: "Normal",
                 themeDark: "Dunkel",
                 langLabel: "Sprache",
+                prefLabel: "Präferenzen",
+                settingFps: "FPS-Anzeige",
+                settingAnimations: "UI-Animationen",
                 creditOwner: "Besitzer",
                 creditScripter: "Skripter",
                 creditBuilder: "Builder",
@@ -918,9 +1027,48 @@
             navHome: 'home',
             navUpdates: 'refresh-cw',
             navSocials: 'share-2',
-            navCommunity: 'users',
+            navStats: 'bar-chart-2',
             navCredits: 'award'
         };
+
+        // FPS Counter Logik
+        let fpsInterval = null;
+        function toggleFpsCounter(enabled) {
+            const fpsEl = document.getElementById('fpsCounter');
+            if (enabled) {
+                fpsEl.style.display = 'block';
+                let lastTime = performance.now();
+                let frameCount = 0;
+                
+                fpsInterval = setInterval(() => {
+                    const now = performance.now();
+                    const delta = (now - lastTime) / 1000;
+                    const fps = Math.round(frameCount / delta);
+                    fpsEl.textContent = `FPS: ${fps}`;
+                    frameCount = 0;
+                    lastTime = now;
+                }, 1000);
+
+                // Frame-Zähler Update Loop
+                window.requestAnimationFrame(function countFrame() {
+                    if (!document.getElementById('fpsToggle').checked) return;
+                    frameCount++;
+                    window.requestAnimationFrame(countFrame);
+                });
+            } else {
+                fpsEl.style.display = 'none';
+                if (fpsInterval) clearInterval(fpsInterval);
+            }
+        }
+
+        // UI Animationen Logik
+        function toggleAnimations(enabled) {
+            if (enabled) {
+                document.body.classList.remove('no-animations');
+            } else {
+                document.body.classList.add('no-animations');
+            }
+        }
 
         function switchTab(tabId, evt) {
             const contents = document.querySelectorAll('.tab-content');
@@ -975,13 +1123,8 @@
                     if (el.classList.contains('nav-tab')) {
                         const iconName = iconMap[key] || 'circle';
                         el.innerHTML = `<i data-lucide="${iconName}"></i> ${translations[lang][key]}`;
-                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'H2') {
-                        if (el.querySelector('i')) {
-                            const iconHtml = el.querySelector('i').outerHTML;
-                            el.innerHTML = iconHtml + ' ' + translations[lang][key];
-                        } else {
-                            el.innerHTML = translations[lang][key];
-                        }
+                    } else if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'SPAN') {
+                        el.textContent = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
                     }
