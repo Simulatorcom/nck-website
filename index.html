@@ -1,25 +1,374 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCK</title>
+    <title>Pet Simulator X Plus</title>
     <style>
-        body {
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fdcb6e;
+            --dark-bg: #1e1e2f;
+            --card-bg: #2d2d44;
+            --text-color: #ffffff;
+            --text-muted: #b2bec3;
+        }
+
+        * {
             margin: 0;
-            height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        header {
+            background: rgba(45, 45, 68, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            background: #111;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--accent-color), #ff7675);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .nav-tab {
+            padding: 8px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--primary-color);
+            color: var(--text-color);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Main Content Sections */
+        main {
+            margin-top: 80px;
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Tab Styling */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--card-bg), #1a1a29);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
-            font-family: Arial, sans-serif;
-            font-size: 5rem;
+            padding: 15px 35px;
+            font-size: 1.1rem;
             font-weight: bold;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Updates / Changelog Tab Styling */
+        .updates-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .update-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .update-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .update-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .update-card ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: var(--text-muted);
+        }
+
+        .update-card li {
+            margin-bottom: 5px;
+        }
+
+        /* Credits Tab Styling */
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .credit-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .credit-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .credit-role {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .credit-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #151521;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            main {
+                margin-top: 130px;
+            }
         }
     </style>
 </head>
 <body>
-    NCK
+
+    <!-- Navigation Bar with Home, Updates, and Credits Tabs -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">PSX Plus</div>
+            <ul class="nav-tabs">
+                <li class="nav-tab active" onclick="switchTab('home')">Home</li>
+                <li class="nav-tab" onclick="switchTab('updates')">Updates</li>
+                <li class="nav-tab" onclick="switchTab('credits')">Credits</li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Home Tab Content -->
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <h1>Welcome to Pet Simulator X Plus!</h1>
+                <p>The ultimate Roblox pet simulator experience combining the best mechanics of Pet Simulator X, Pet Simulator 99, and exclusive custom features built just for you!</p>
+                <a href="https://www.roblox.com" target="_blank" class="cta-button">Play on Roblox</a>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Classic PSX World</h3>
+                    <p>Relive the nostalgia with classic worlds, unlocking areas, and hatching your favorite retro pets.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>PS99 Mechanics</h3>
+                    <p>Enjoy modern gameplay improvements inspired by Pet Simulator 99, including enhanced progression and trading systems.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom Content</h3>
+                    <p>Discover completely unique, custom-made pets, exclusive enchantments, and events you won't find anywhere else!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Updates Tab Content (Added Tab) -->
+        <section id="updates" class="tab-content">
+            <div class="updates-container">
+                <div class="update-card">
+                    <h3>Version 1.0.0 - Grand Release!</h3>
+                    <span class="update-date">Released: Coming Soon</span>
+                    <ul>
+                        <li>Initial game launch with worlds 1 through 3.</li>
+                        <li>Over 50+ Custom pets added to hatch.</li>
+                        <li>Trading plaza fully enabled.</li>
+                        <li>PS99-style progression system integrated.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credits Tab Content -->
+        <section id="credits" class="tab-content">
+            <div class="credits-grid">
+                <div class="credit-card">
+                    <h3>Lead Developer</h3>
+                    <span class="credit-role">Game Creator & Owner</span>
+                    <p>Responsible for overall game design, scripting, and custom systems.</p>
+                </div>
+                <div class="credit-card">
+                    <h3>Builder & Modeler</h3>
+                    <span class="credit-role">Map & Asset Designer</span>
+                    <p>Crafting stunning custom worlds and unique pet models.</p>
+                </div>
+                <div class="credit-card">
+                    <h3>Community Team</h3>
+                    <span class="credit-role">Moderation & Support</span>
+                    <p>Keeping the community safe, active, and helpful for all players.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pet Simulator X Plus. Not officially affiliated with BIG Games.</p>
+    </footer>
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content and activate corresponding tab button
+            document.getElementById(tabId).classList.add('active');
+            
+            // Find the clicked tab element based on text or index
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>
