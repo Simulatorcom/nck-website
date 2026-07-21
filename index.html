@@ -28,14 +28,14 @@
         }
 
         [data-theme="normal"] {
-            --primary-color: #7289da;
-            --accent-color: #7289da;
-            --dark-bg: #2c2f33;
-            --card-bg: #23272a;
+            --primary-color: #5865F2;
+            --accent-color: #00ffcc;
+            --dark-bg: #0b0c10;
+            --card-bg: #1f2833;
             --text-color: #ffffff;
-            --text-muted: #99aab5;
-            --header-bg: rgba(35, 39, 42, 0.9);
-            --gradient-bg: var(--dark-bg);
+            --text-muted: #c5c6c7;
+            --header-bg: rgba(11, 12, 16, 0.9);
+            --gradient-bg: radial-gradient(circle at 50% 20%, #1a1a2e 0%, var(--dark-bg) 70%);
         }
 
         * {
@@ -66,37 +66,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .top-utility-bar {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5px 30px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .settings-mini-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.2s;
-        }
-
-        .settings-mini-btn:hover {
-            background: var(--primary-color);
-            color: var(--text-color);
-            border-color: transparent;
-        }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,6 +73,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -114,6 +84,12 @@
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+        }
+
+        .header-right-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .nav-tabs {
@@ -138,8 +114,29 @@
             box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
         }
 
+        .settings-mini-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .settings-mini-btn:hover {
+            background: var(--primary-color);
+            color: var(--text-color);
+            border-color: transparent;
+        }
+
         main {
-            margin-top: 120px;
+            margin-top: 100px;
             flex: 1;
             padding: 40px 20px;
             max-width: 1200px;
@@ -420,62 +417,62 @@
 <body>
 
     <header>
-        <div class="top-utility-bar">
-            <button class="settings-mini-btn" onclick="switchTab('settings', event)">
-                ⚙️ Settings
-            </button>
-        </div>
         <div class="nav-container">
             <div class="logo">PSX + (Plus)</div>
-            <ul class="nav-tabs">
-                <li class="nav-tab active" onclick="switchTab('home', event)">Home</li>
-                <li class="nav-tab" onclick="switchTab('updates', event)">Updates</li>
-                <li class="nav-tab" onclick="switchTab('socials', event)">Socials</li>
-                <li class="nav-tab" onclick="switchTab('credits', event)">Credits</li>
-            </ul>
+            <div class="header-right-group">
+                <ul class="nav-tabs">
+                    <li class="nav-tab active" data-i18n-key="navHome" onclick="switchTab('home', event)">Home</li>
+                    <li class="nav-tab" data-i18n-key="navUpdates" onclick="switchTab('updates', event)">Updates</li>
+                    <li class="nav-tab" data-i18n-key="navSocials" onclick="switchTab('socials', event)">Socials</li>
+                    <li class="nav-tab" data-i18n-key="navCredits" onclick="switchTab('credits', event)">Credits</li>
+                </ul>
+                <button class="settings-mini-btn" onclick="switchTab('settings', event)">
+                    ⚙️ Settings
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
         <section id="home" class="tab-content active">
             <div class="hero">
-                <h1>Pet Simulator X+ (Plus)</h1>
-                <p>The ultimate Roblox pet simulator experience combining the best mechanics of Pet Simulator X+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!</p>
-                <a href="https://www.roblox.com" target="_blank" class="cta-button">Play on Roblox</a>
+                <h1 data-i18n-key="heroTitle">Pet Simulator X+ (Plus)</h1>
+                <p data-i18n-key="heroDesc">The ultimate Roblox pet simulator experience combining the best mechanics of Pet Simulator X+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!</p>
+                <a href="https://www.roblox.com" target="_blank" class="cta-button" data-i18n-key="ctaPlay">Play on Roblox</a>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>Classic PSX World</h3>
-                    <p>Relive the nostalgia with classic worlds, unlocking areas, and hatching your favorite retro pets.</p>
+                    <h3 data-i18n-key="feat1Title">Classic PSX World</h3>
+                    <p data-i18n-key="feat1Desc">Relive the nostalgia with classic worlds, unlocking areas, and hatching your favorite retro pets.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>PS99 Mechanics</h3>
-                    <p>Enjoy modern gameplay improvements inspired by Pet Simulator 99, including enhanced progression and trading systems.</p>
+                    <h3 data-i18n-key="feat2Title">PS99 Mechanics</h3>
+                    <p data-i18n-key="feat2Desc">Enjoy modern gameplay improvements inspired by Pet Simulator 99, including enhanced progression and trading systems.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Custom Content</h3>
-                    <p>Discover completely unique, custom-made pets, exclusive enchantments, and events you won't find anywhere else!</p>
+                    <h3 data-i18n-key="feat3Title">Custom Content</h3>
+                    <p data-i18n-key="feat3Desc">Discover completely unique, custom-made pets, exclusive enchantments, and events you won't find anywhere else!</p>
                 </div>
             </div>
         </section>
 
         <section id="updates" class="tab-content">
             <div class="updates-container">
-                <h2>Game Updates Log</h2>
+                <h2 data-i18n-key="updatesTitle">Game Updates Log</h2>
                 <table class="updates-table">
                     <thead>
                         <tr>
-                            <th>Version</th>
-                            <th>Release Date</th>
-                            <th>Changelog / Details</th>
+                            <th data-i18n-key="tableVer">Version</th>
+                            <th data-i18n-key="tableDate">Release Date</th>
+                            <th data-i18n-key="tableDetails">Changelog / Details</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>v0.0.0</td>
-                            <td>Coming Soon</td>
-                            <td>No Data Yet.</td>
+                            <td data-i18n-key="comingSoon">Coming Soon</td>
+                            <td data-i18n-key="noData">No Data Yet.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -484,15 +481,15 @@
 
         <section id="socials" class="tab-content">
             <div class="socials-container">
-                <h2>Our Socials</h2>
+                <h2 data-i18n-key="socialsTitle">Our Socials</h2>
                 <div class="socials-grid">
                     <a href="https://discord.com" target="_blank" class="social-card">
                         <h3>Discord</h3>
-                        <p>Get Leaks announcements usw</p>
+                        <p data-i18n-key="discordDesc">Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!</p>
                     </a>
                     <a href="https://youtube.com" target="_blank" class="social-card">
                         <h3>YouTube</h3>
-                        <p>Neue videos und so</p>
+                        <p data-i18n-key="youtubeDesc">Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!</p>
                     </a>
                 </div>
             </div>
@@ -500,18 +497,18 @@
 
         <section id="settings" class="tab-content">
             <div class="settings-container">
-                <h2>Settings</h2>
+                <h2 data-i18n-key="settingsTitle">Settings</h2>
                 <div class="setting-group">
-                    <label>Theme Mode</label>
+                    <label data-i18n-key="themeLabel">Theme Mode</label>
                     <div class="theme-switches">
-                        <button class="theme-btn" onclick="setTheme('light', event)">Light Mode</button>
-                        <button class="theme-btn active" onclick="setTheme('dark', event)">Dark Mode</button>
-                        <button class="theme-btn" onclick="setTheme('normal', event)">Normal Mode</button>
+                        <button class="theme-btn" onclick="setTheme('light', event)" data-i18n-key="themeLight">Light Mode</button>
+                        <button class="theme-btn" onclick="setTheme('normal', event)" data-i18n-key="themeNormal">Normal Mode</button>
+                        <button class="theme-btn active" onclick="setTheme('dark', event)" data-i18n-key="themeDark">Dark Mode</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label for="languageSelect">Language</label>
-                    <select id="languageSelect" class="lang-select">
+                    <label for="languageSelect" data-i18n-key="langLabel">Language</label>
+                    <select id="languageSelect" class="lang-select" onchange="changeLanguage(this.value)">
                         <option value="en">English</option>
                         <option value="tr">Turkish</option>
                         <option value="de">Germany</option>
@@ -523,15 +520,15 @@
         <section id="credits" class="tab-content">
             <div class="credits-list">
                 <div class="credit-card">
-                    <h3>Owner</h3>
+                    <h3 data-i18n-key="creditOwner">Owner</h3>
                     <p>𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
                 </div>
                 <div class="credit-card">
-                    <h3>Scripter</h3>
+                    <h3 data-i18n-key="creditScripter">Scripter</h3>
                     <p>Nck, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
                 </div>
                 <div class="credit-card">
-                    <h3>Builder</h3>
+                    <h3 data-i18n-key="creditBuilder">Builder</h3>
                     <p>SENSEI, fireflya, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
                 </div>
             </div>
@@ -539,10 +536,115 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Pet Simulator X+ (Plus). Not officially affiliated with BIG Games.</p>
+        <p data-i18n-key="footerText">&copy; 2026 Pet Simulator X+ (Plus). Not officially affiliated with BIG Games.</p>
     </footer>
 
     <script>
+        const translations = {
+            en: {
+                navHome: "Home",
+                navUpdates: "Updates",
+                navSocials: "Socials",
+                navCredits: "Credits",
+                heroTitle: "Pet Simulator X+ (Plus)",
+                heroDesc: "The ultimate Roblox pet simulator experience combining the best mechanics of Pet Simulator X+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!",
+                ctaPlay: "Play on Roblox",
+                feat1Title: "Classic PSX World",
+                feat1Desc: "Relive the nostalgia with classic worlds, unlocking areas, and hatching your favorite retro pets.",
+                feat2Title: "PS99 Mechanics",
+                feat2Desc: "Enjoy modern gameplay improvements inspired by Pet Simulator 99, including enhanced progression and trading systems.",
+                feat3Title: "Custom Content",
+                feat3Desc: "Discover completely unique, custom-made pets, exclusive enchantments, and events you won't find anywhere else!",
+                updatesTitle: "Game Updates Log",
+                tableVer: "Version",
+                tableDate: "Release Date",
+                tableDetails: "Changelog / Details",
+                comingSoon: "Coming Soon",
+                noData: "No Data Yet.",
+                socialsTitle: "Our Socials",
+                discordDesc: "Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!",
+                youtubeDesc: "Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!",
+                settingsTitle: "Settings",
+                themeLabel: "Theme Mode",
+                themeLight: "Light Mode",
+                themeNormal: "Normal Mode",
+                themeDark: "Dark Mode",
+                langLabel: "Language",
+                creditOwner: "Owner",
+                creditScripter: "Scripter",
+                creditBuilder: "Builder",
+                footerText: "&copy; 2026 Pet Simulator X+ (Plus). Not officially affiliated with BIG Games."
+            },
+            tr: {
+                navHome: "Ana Sayfa",
+                navUpdates: "Güncellemeler",
+                navSocials: "Sosyal Medya",
+                navCredits: "Emeği Geçenler",
+                heroTitle: "Pet Simulator X+ (Plus)",
+                heroDesc: "Pet Simulator X+ (Plus), Pet Simulator 99 mekaniklerini ve size özel özel özellikleri birleştiren nihai Roblox evcil hayvan simülatörü deneyimi!",
+                ctaPlay: "Roblox'ta Oyna",
+                feat1Title: "Klasik PSX Dünyası",
+                feat1Desc: "Klasik dünyalar, alanların kilidini açma ve en sevdiğiniz retro evcil hayvanları yumurtadan çıkarma nostaljisini yeniden yaşayın.",
+                feat2Title: "PS99 Mekanikleri",
+                feat2Desc: "Gelişmiş ilerleme ve ticaret sistemleri dahil olmak üzere Pet Simulator 99'dan ilham alan modern oynanış iyileştirmelerinin tadını çıkarın.",
+                feat3Title: "Özel İçerik",
+                feat3Desc: "Başka hiçbir yerde bulamayacağınız tamamen benzersiz, özel yapım evcil hayvanları, özel büyüleri ve etkinlikleri keşfedin!",
+                updatesTitle: "Oyun Güncelleme Günlüğü",
+                tableVer: "Sürüm",
+                tableDate: "Çıkış Tarihi",
+                tableDetails: "Değişiklik Günlüğü / Detaylar",
+                comingSoon: "Çok Yakında",
+                noData: "Henüz Veri Yok.",
+                socialsTitle: "Sosyal Medyamız",
+                discordDesc: "Özel sızıntıları, erken güncelleme duyurularını almak ve diğer oyuncularla bağlantı kurmak için resmi Discord topluluğumuza katılın!",
+                youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici vurguları için kanalımıza abone olun!",
+                settingsTitle: "Ayarlar",
+                themeLabel: "Tema Modu",
+                themeLight: "Açık Mod",
+                themeNormal: "Normal Mod",
+                themeDark: "Koyu Mod",
+                langLabel: "Dil",
+                creditOwner: "Sahibi",
+                creditScripter: "Kodlayıcı",
+                creditBuilder: "İnşaatçı",
+                footerText: "&copy; 2026 Pet Simulator X+ (Plus). BIG Games ile resmi bir bağlantısı yoktur."
+            },
+            de: {
+                navHome: "Startseite",
+                navUpdates: "Updates",
+                navSocials: "Soziale Medien",
+                navCredits: "Mitwirkende",
+                heroTitle: "Pet Simulator X+ (Plus)",
+                heroDesc: "Das ultimative Roblox-Haustier-Simulator-Erlebnis, das die besten Mechaniken von Pet Simulator X+ (Plus), Pet Simulator 99 und exklusiven Custom-Features vereint!",
+                ctaPlay: "Auf Roblox spielen",
+                feat1Title: "Klassische PSX Welt",
+                feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, dem Freischalten von Bereichen und dem Ausbrüten deiner Lieblings-Retropets.",
+                feat2Title: "PS99 Mechaniken",
+                feat2Desc: "Genieße moderne Gameplay-Verbesserungen inspiriert von Pet Simulator 99, inklusive verbesserter Progression und Handelssysteme.",
+                feat3Title: "Custom Content",
+                feat3Desc: "Entdecke völlig einzigartige, maßgeschneiderte Haustiere, exklusive Verzauberungen und Events, die du sonst nirgendwo findest!",
+                updatesTitle: "Spiel-Update-Protokoll",
+                tableVer: "Version",
+                tableDate: "Veröffentlichungsdatum",
+                tableDetails: "Änderungsprotokoll / Details",
+                comingSoon: "Demnächst",
+                noData: "Noch keine Daten.",
+                socialsTitle: "Unsere Socials",
+                discordDesc: "Trete unserer offiziellen Discord-Community bei, um exklusive Leaks und frühe Update-Ankündigungen zu erhalten!",
+                youtubeDesc: "Abonniere unseren Kanal für neue Videos, Einblicke, Update-Trailer und Entwickler-Highlights!",
+                settingsTitle: "Einstellungen",
+                themeLabel: "Themenmodus",
+                themeLight: "Heller Modus",
+                themeNormal: "Normaler Modus",
+                themeDark: "Dunkler Modus",
+                langLabel: "Sprache",
+                creditOwner: "Besitzer",
+                creditScripter: "Skripter",
+                creditBuilder: "Builder",
+                footerText: "&copy; 2026 Pet Simulator X+ (Plus). Nicht offiziell mit BIG Games verbunden."
+            }
+        };
+
         function switchTab(tabId, evt) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -569,6 +671,20 @@
             const buttons = document.querySelectorAll('.theme-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             evt.currentTarget.classList.add('active');
+        }
+
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'FOOTER' || el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
         }
     </script>
 </body>
