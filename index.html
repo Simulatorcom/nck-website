@@ -99,9 +99,33 @@
             z-index: 1;
         }
 
-        header, .drawer-overlay, .settings-drawer, main, footer {
+        header, .drawer-overlay, .settings-drawer, main, footer, .side-cat {
             position: relative;
             z-index: 2;
+        }
+
+        /* GROßE Katze die vom rechten Rand hervor-pop-up't */
+        .side-cat {
+            position: fixed;
+            right: -320px;
+            bottom: 0;
+            width: 320px;
+            height: auto;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateX(0);
+        }
+
+        body.show-cat .side-cat {
+            transform: translateX(-320px);
+        }
+
+        .side-cat img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(-10px 10px 20px rgba(0,0,0,0.5));
         }
 
         header {
@@ -404,7 +428,6 @@
             border-color: #ffffff;
         }
 
-        /* Redesigned Modern Stats Section */
         .influence-section {
             margin: 0 auto;
             max-width: 1000px;
@@ -630,7 +653,6 @@
             stroke: #ffffff;
         }
 
-        /* Blog Modal */
         .blog-modal-overlay {
             position: fixed;
             top: 0;
@@ -789,7 +811,6 @@
             font-weight: 700;
         }
 
-        /* Redesigned Epic Credits Section */
         .credits-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -839,9 +860,9 @@
         }
 
         .credit-card:hover {
-            transform: translateY(-6px);
-            border-color: #ffffff;
-            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent-color);
+            box-shadow: 0 25px 50px rgba(0, 255, 204, 0.15);
         }
 
         .credit-card::before {
@@ -851,55 +872,58 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #888888, #333333);
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
             opacity: 0.8;
         }
 
         .credit-icon-wrapper {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
             background: rgba(128, 128, 128, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-color);
+            color: var(--accent-color);
             margin-bottom: 15px;
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
 
         .credit-card:hover .credit-icon-wrapper {
-            background: rgba(128, 128, 128, 0.2);
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            background: rgba(0, 255, 204, 0.15);
+            color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            transform: rotate(5deg) scale(1.1);
         }
 
         .credit-icon-wrapper svg {
-            width: 28px;
-            height: 28px;
-            stroke-width: 2;
+            width: 32px;
+            height: 32px;
+            stroke-width: 2.2;
             transition: stroke 0.3s ease;
         }
 
-        .credit-card:hover .credit-icon-wrapper svg {
-            stroke: #ffffff;
-        }
-
         .credit-role {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-weight: 800;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .credit-card:hover .credit-role {
+            color: var(--accent-color);
         }
 
         .credit-names {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--text-color);
             line-height: 1.4;
             word-break: break-word;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .setting-group {
@@ -1017,7 +1041,6 @@
             transform: translateX(22px);
         }
 
-        /* Socials Design: Dünner (weniger Höhe), länger (mehr Breite), Icons größer */
         .socials-subtitle {
             font-size: 1.05rem;
             color: var(--text-muted);
@@ -1126,6 +1149,11 @@
 
     <canvas id="particleCanvas"></canvas>
 
+    <!-- GROßE Katze am rechten Rand -->
+    <div class="side-cat">
+        <img src="assets/CatPsx.png" alt="Cat Mascot">
+    </div>
+
     <header>
         <div class="nav-container">
             <div class="logo-wrapper">
@@ -1136,7 +1164,7 @@
                 <ul class="nav-tabs">
                     <li class="nav-tab active" onclick="switchTab('home', event)"><i data-lucide="home"></i> <span data-i18n-key="navHome">Home</span></li>
                     <li class="nav-tab" onclick="switchTab('updates', event)"><i data-lucide="file-text"></i> <span data-i18n-key="navUpdates">Blogs</span></li>
-                    <li class="nav-tab" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> <span data-i18n-key="navSocials">Socials</span></li>
+                    <li class="nav-tab" id="socialsNavTab" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> <span data-i18n-key="navSocials">Socials</span></li>
                     <li class="nav-tab" onclick="switchTab('stats', event)"><i data-lucide="bar-chart-2"></i> <span data-i18n-key="navStats">Stats</span></li>
                     <li class="nav-tab" onclick="switchTab('credits', event)"><i data-lucide="award"></i> <span data-i18n-key="navCredits">Credits</span></li>
                 </ul>
@@ -1515,7 +1543,6 @@
 
         let currentLang = 'en';
 
-        // --- MANUELLE STATS KONFIGURATION ---
         const manualDiscordMembers = "0+";
         const universeId = "10171618436";
 
@@ -1559,6 +1586,13 @@
             document.getElementById(tabId).classList.add('active');
             if (event && event.currentTarget) {
                 event.currentTarget.classList.add('active');
+            }
+
+            // --- KATZEN LOGIK BEIM TAB WECHSEL ---
+            if (tabId === 'socials') {
+                document.body.classList.add('show-cat');
+            } else {
+                document.body.classList.remove('show-cat');
             }
         }
 
