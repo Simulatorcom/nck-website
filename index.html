@@ -10,7 +10,7 @@
     <meta property="og:site_name" content="PLUS GAMES">
     <meta property="og:title" content="PLUS GAMES — The Ultimate Roblox Pet Simulator Experience">
     <meta property="og:description" content="Discover classic worlds, Pet Simulator 99 mechanics, and exclusive custom pets! Play now on Roblox and join our community.">
-    <meta property="og:thumbnail" content="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png">
+    <meta property="og:image" content="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png">
     <meta property="og:url" content="https://nck-website.pages.dev/">
 
     <meta name="theme-color" content="#5865F2">
@@ -155,9 +155,10 @@
             gap: 8px;
         }
 
-        .nav-tab i {
+        .nav-tab svg {
             width: 18px;
             height: 18px;
+            stroke-width: 2;
         }
 
         .nav-tab:hover, .nav-tab.active {
@@ -189,10 +190,11 @@
             transition: all 0.2s;
         }
 
-        .settings-mini-btn i {
+        .settings-mini-btn svg {
             width: 16px;
             height: 16px;
             flex-shrink: 0;
+            stroke-width: 2;
         }
 
         .settings-mini-btn:hover {
@@ -246,6 +248,12 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
+        }
+
+        .close-drawer-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2;
         }
 
         .close-drawer-btn:hover {
@@ -695,16 +703,17 @@
         <div class="nav-container">
             <div class="logo-wrapper">
                 <link itemprop="thumbnailUrl" href="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png">
+                <link rel="image_src" href="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png">
                 <img src="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png" alt="Logo Icon" class="logo-icon">
                 <div class="logo">PLUS GAMES</div>
             </div>
             <div class="nav-center-group">
                 <ul class="nav-tabs">
-                    <li class="nav-tab active" data-i18n-key="navHome" onclick="switchTab('home', event)"><i data-lucide="home"></i> Home</li>
-                    <li class="nav-tab" data-i18n-key="navUpdates" onclick="switchTab('updates', event)"><i data-lucide="refresh-cw"></i> Updates</li>
-                    <li class="nav-tab" data-i18n-key="navSocials" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> Socials</li>
-                    <li class="nav-tab" data-i18n-key="navStats" onclick="switchTab('stats', event)"><i data-lucide="bar-chart-2"></i> Stats</li>
-                    <li class="nav-tab" data-i18n-key="navCredits" onclick="switchTab('credits', event)"><i data-lucide="award"></i> Credits</li>
+                    <li class="nav-tab active" onclick="switchTab('home', event)"><i data-lucide="home"></i> <span data-i18n-key="navHome">Home</span></li>
+                    <li class="nav-tab" onclick="switchTab('updates', event)"><i data-lucide="refresh-cw"></i> <span data-i18n-key="navUpdates">Updates</span></li>
+                    <li class="nav-tab" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> <span data-i18n-key="navSocials">Socials</span></li>
+                    <li class="nav-tab" onclick="switchTab('stats', event)"><i data-lucide="bar-chart-2"></i> <span data-i18n-key="navStats">Stats</span></li>
+                    <li class="nav-tab" onclick="switchTab('credits', event)"><i data-lucide="award"></i> <span data-i18n-key="navCredits">Credits</span></li>
                 </ul>
             </div>
             <div class="settings-wrapper">
