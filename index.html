@@ -140,7 +140,7 @@
         .logo {
             font-size: 1.6rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--text-color), var(--text-muted));
+            background: linear-gradient(135deg, #a0a0a0, #505050);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -176,12 +176,18 @@
             width: 18px;
             height: 18px;
             stroke-width: 2;
+            transition: stroke 0.3s ease, color 0.3s ease;
         }
 
         .nav-tab:hover, .nav-tab.active {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-tab:hover svg, .nav-tab.active svg {
+            stroke: #ffffff;
+            color: #ffffff;
         }
 
         .settings-wrapper {
@@ -212,12 +218,17 @@
             height: 16px;
             flex-shrink: 0;
             stroke-width: 2;
+            transition: stroke 0.3s ease;
         }
 
         .settings-mini-btn:hover {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
-            border-color: transparent;
+            border-color: #ffffff;
+        }
+
+        .settings-mini-btn:hover svg {
+            stroke: #ffffff;
         }
 
         .settings-drawer {
@@ -271,11 +282,16 @@
             width: 18px;
             height: 18px;
             stroke-width: 2;
+            transition: stroke 0.3s ease;
         }
 
         .close-drawer-btn:hover {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
+        }
+
+        .close-drawer-btn:hover svg {
+            stroke: #ffffff;
         }
 
         .drawer-overlay {
@@ -353,6 +369,9 @@
             font-size: 3rem;
             margin-bottom: 15px;
             color: var(--text-color);
+            background: linear-gradient(135deg, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
@@ -373,16 +392,16 @@
             font-weight: 800;
             border-radius: 14px;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            background: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
-            border-color: transparent;
+            border-color: #ffffff;
         }
 
         /* Redesigned Modern Stats Section */
@@ -402,6 +421,9 @@
             color: var(--text-color);
             font-weight: 900;
             letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .influence-header p {
@@ -433,8 +455,8 @@
 
         .inf-card:hover {
             transform: translateY(-6px);
-            border-color: var(--primary-color);
-            box-shadow: 0 20px 40px rgba(88, 101, 242, 0.15);
+            border-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
         }
 
         .inf-card::before {
@@ -444,7 +466,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            background: linear-gradient(90deg, #888888, #333333);
             opacity: 0.8;
         }
 
@@ -452,25 +474,30 @@
             width: 50px;
             height: 50px;
             border-radius: 14px;
-            background: rgba(88, 101, 242, 0.1);
+            background: rgba(128, 128, 128, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-color);
+            color: var(--text-color);
             margin-bottom: 15px;
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
         .inf-card:hover .stat-icon-wrapper {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         .stat-icon-wrapper svg {
             width: 24px;
             height: 24px;
             stroke-width: 2.2;
+            transition: stroke 0.3s ease;
+        }
+
+        .inf-card:hover .stat-icon-wrapper svg {
+            stroke: #ffffff;
         }
 
         .inf-card h3 {
@@ -510,12 +537,14 @@
             border: 1px solid var(--border-color);
             padding: 30px;
             border-radius: 16px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            border-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
         }
 
         .feature-card h3 {
@@ -588,12 +617,17 @@
             width: 16px;
             height: 16px;
             stroke-width: 2;
+            transition: stroke 0.3s ease;
         }
 
         .update-btn:hover {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
-            border-color: transparent;
+            border-color: #ffffff;
+        }
+
+        .update-btn:hover svg {
+            stroke: #ffffff;
         }
 
         /* Blog Modal */
@@ -662,9 +696,20 @@
             transition: all 0.2s;
         }
 
+        .blog-modal-close svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
+        }
+
         .blog-modal-close:hover {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
+        }
+
+        .blog-modal-close:hover svg {
+            stroke: #ffffff;
         }
 
         .blog-date {
@@ -744,34 +789,117 @@
             font-weight: 700;
         }
 
-        .credits-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 900px;
+        /* Redesigned Epic Credits Section */
+        .credits-container {
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .credits-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .credits-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .credits-header p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+        }
+
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
         }
 
         .credit-card {
             background-color: var(--card-bg);
-            padding: 25px 30px;
-            border-radius: 16px;
             border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            align-items: center;
+            min-height: 260px;
+            justify-content: space-between;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
         }
 
-        .credit-card h3 {
-            font-size: 1.3rem;
+        .credit-card:hover {
+            transform: translateY(-6px);
+            border-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .credit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #888888, #333333);
+            opacity: 0.8;
+        }
+
+        .credit-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: rgba(128, 128, 128, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-color);
+            margin-bottom: 15px;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
-        .credit-card p {
+        .credit-card:hover .credit-icon-wrapper {
+            background: rgba(128, 128, 128, 0.2);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .credit-icon-wrapper svg {
+            width: 28px;
+            height: 28px;
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
+        }
+
+        .credit-card:hover .credit-icon-wrapper svg {
+            stroke: #ffffff;
+        }
+
+        .credit-role {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
             color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .credit-names {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-color);
+            line-height: 1.4;
+            word-break: break-word;
         }
 
         .setting-group {
@@ -804,9 +932,13 @@
         }
 
         .theme-btn.active {
-            background: var(--primary-color);
+            background: rgba(128, 128, 128, 0.2);
             color: #ffffff;
-            border-color: transparent;
+            border-color: #ffffff;
+        }
+
+        .theme-btn:hover {
+            border-color: #ffffff;
         }
 
         .lang-select {
@@ -878,7 +1010,7 @@
         }
 
         input:checked + .slider {
-            background-color: var(--primary-color);
+            background-color: rgba(128, 128, 128, 0.4);
         }
 
         input:checked + .slider:before {
@@ -914,7 +1046,7 @@
             height: 46px;
             border-radius: 23px;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
             border: 1px solid var(--border-color);
         }
 
@@ -930,6 +1062,7 @@
         }
         .social-roblox:hover {
             transform: translateY(-2px);
+            border-color: #ffffff;
             box-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
@@ -940,7 +1073,8 @@
         }
         .social-discord:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(88, 101, 242, 0.7);
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
         }
 
         .social-youtube {
@@ -950,7 +1084,8 @@
         }
         .social-youtube:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
         }
 
         footer {
@@ -964,7 +1099,7 @@
         }
 
         @media (max-width: 900px) {
-            .features-grid, .influence-grid {
+            .features-grid, .influence-grid, .credits-grid {
                 grid-template-columns: 1fr;
             }
             .nav-container {
@@ -1131,14 +1266,14 @@
         <section id="stats" class="tab-content">
             <div class="influence-section">
                 <div class="influence-header">
-                    <h2 data-i18n-key="infHeaderTitle">Community Stats</h2>
-                    <p data-i18n-key="infHeaderDesc">A quick look at the Plus Games community statistics.</p>
+                    <h2 data-i18n-key="infHeaderTitle">Game Stats</h2>
+                    <p data-i18n-key="infHeaderDesc">A quick look at the Plus Games game statistics.</p>
                 </div>
                 <div class="influence-grid">
                     <div class="inf-card visits">
-                        <div class="stat-icon-wrapper"><i data-lucide="eye"></i></div>
+                        <div class="stat-icon-wrapper"><i data-lucide="gamepad-2"></i></div>
                         <div>
-                            <h3 id="statVisits">2.5M+</h3>
+                            <h3 id="statVisits">Loading...</h3>
                             <h4 data-i18n-key="infVisitsTitle">Total Visits</h4>
                         </div>
                         <p data-i18n-key="infVisitsDesc">Across all of our games - and still climbing.</p>
@@ -1146,7 +1281,7 @@
                     <div class="inf-card discord">
                         <div class="stat-icon-wrapper"><i data-lucide="users"></i></div>
                         <div>
-                            <h3 id="statDiscord">15.4K</h3>
+                            <h3 id="statDiscord">0+</h3>
                             <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
                         </div>
                         <p data-i18n-key="infDiscordDesc">Chatting, trading, and hanging out every day.</p>
@@ -1154,7 +1289,7 @@
                     <div class="inf-card players">
                         <div class="stat-icon-wrapper"><i data-lucide="activity"></i></div>
                         <div>
-                            <h3 id="statPlayers">420</h3>
+                            <h3 id="statPlayers">Loading...</h3>
                             <h4 data-i18n-key="infPlayersTitle">Active Players</h4>
                         </div>
                         <p data-i18n-key="infPlayersDesc">Online in our games right now.</p>
@@ -1206,18 +1341,33 @@
         </section>
 
         <section id="credits" class="tab-content">
-            <div class="credits-list">
-                <div class="credit-card">
-                    <h3 data-i18n-key="creditOwner">Owner</h3>
-                    <p>𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
+            <div class="credits-container">
+                <div class="credits-header">
+                    <h2 data-i18n-key="navCredits">Credits</h2>
+                    <p>The talented team behind the development of Plus Games.</p>
                 </div>
-                <div class="credit-card">
-                    <h3 data-i18n-key="creditScripter">Scripter</h3>
-                    <p>Nck, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
-                </div>
-                <div class="credit-card">
-                    <h3 data-i18n-key="creditBuilder">Builder</h3>
-                    <p>SENSEI, FireFlya, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</p>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <div class="credit-icon-wrapper"><i data-lucide="crown"></i></div>
+                        <div>
+                            <div class="credit-role" data-i18n-key="creditOwner">Owner</div>
+                            <div class="credit-names">𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</div>
+                        </div>
+                    </div>
+                    <div class="credit-card">
+                        <div class="credit-icon-wrapper"><i data-lucide="code"></i></div>
+                        <div>
+                            <div class="credit-role" data-i18n-key="creditScripter">Scripter</div>
+                            <div class="credit-names">Nck, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</div>
+                        </div>
+                    </div>
+                    <div class="credit-card">
+                        <div class="credit-icon-wrapper"><i data-lucide="hammer"></i></div>
+                        <div>
+                            <div class="credit-role" data-i18n-key="creditBuilder">Builder</div>
+                            <div class="credit-names">SENSEI, FireFlya, 𝐸𝓍𝓉𝑒𝓇𝓃𝒶𝓁</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1238,8 +1388,8 @@
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "The ultimate Roblox pet simulator experience combining the best mechanics of PSX+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!",
                 ctaPlay: "Play on Roblox",
-                infHeaderTitle: "Community Stats",
-                infHeaderDesc: "A quick look at the Plus Games community statistics.",
+                infHeaderTitle: "Game Stats",
+                infHeaderDesc: "A quick look at the Plus Games game statistics.",
                 infVisitsTitle: "Total Visits",
                 infVisitsDesc: "Across all of our games - and still climbing.",
                 infDiscordTitle: "Discord Members",
@@ -1282,8 +1432,8 @@
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "PSX+ (Plus), Pet Simulator 99 mekaniklerini ve sadece sizin için yapılmış özel içerikleri birleştiren nihai Roblox evcil hayvan simülatörü deneyimi!",
                 ctaPlay: "Roblox'ta Oyna",
-                infHeaderTitle: "Topluluk İstatistikleri",
-                infHeaderDesc: "Plus Games topluluk istatistiklerine hızlı bir bakış.",
+                infHeaderTitle: "Oyun İstatistikleri",
+                infHeaderDesc: "Plus Games oyun istatistiklerine hızlı bir bakış.",
                 infVisitsTitle: "Toplam Ziyaret",
                 infVisitsDesc: "Tüm oyunlarımızda - ve hala yükseliyor.",
                 infDiscordTitle: "Discord Üyeleri",
@@ -1326,8 +1476,8 @@
                 heroTitle: "PSX+ (Plus)",
                 heroDesc: "Das ultimative Roblox-Pet-Simulator-Erlebnis, das die besten Mechaniken von PSX+, Pet Simulator 99 und exklusiven eigenen Features vereint!",
                 ctaPlay: "Auf Roblox spielen",
-                infHeaderTitle: "Community-Statistiken",
-                infHeaderDesc: "Ein kurzer Blick auf die Statistiken der Plus Games-Community.",
+                infHeaderTitle: "Spielstatistiken",
+                infHeaderDesc: "Ein kurzer Blick auf die Statistiken der Plus Games-Spiele.",
                 infVisitsTitle: "Gesamte Besuche",
                 infVisitsDesc: "Über alle unsere Spiele hinweg - und es steigt weiter.",
                 infDiscordTitle: "Discord-Mitglieder",
@@ -1364,6 +1514,44 @@
         };
 
         let currentLang = 'en';
+
+        // --- MANUELLE STATS KONFIGURATION ---
+        const manualDiscordMembers = "0+";
+        const universeId = "10171618436";
+
+        async function fetchRobloxStats() {
+            try {
+                const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://games.roblox.com/v1/games?universeIds=' + universeId)}`);
+                const data = await response.json();
+                const parsedData = JSON.parse(data.contents);
+
+                if (parsedData && parsedData.data && parsedData.data.length > 0) {
+                    const game = parsedData.data[0];
+                    document.getElementById('statVisits').innerText = formatNumber(game.visits);
+                    document.getElementById('statPlayers').innerText = formatNumber(game.playing);
+                } else {
+                    throw new Error("No data found");
+                }
+            } catch (error) {
+                console.error("Fehler beim Laden der Roblox Stats:", error);
+                document.getElementById('statVisits').innerText = "2.5M+";
+                document.getElementById('statPlayers').innerText = "420";
+            }
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M+';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K+';
+            }
+            return num;
+        }
+
+        function initStats() {
+            document.getElementById('statDiscord').innerText = manualDiscordMembers;
+            fetchRobloxStats();
+        }
 
         function switchTab(tabId, event) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -1494,6 +1682,7 @@
 
         setTimeout(() => {
             lucide.createIcons();
+            initStats();
         }, 100);
     </script>
 </body>
