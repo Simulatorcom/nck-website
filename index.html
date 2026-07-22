@@ -486,14 +486,14 @@
         .updates-container, .socials-container {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 40px;
+            border-radius: 24px;
             max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        .updates-container h2, .socials-container h2 {
+        .updates-container h2 {
             margin-bottom: 20px;
             color: var(--text-color);
             font-size: 1.8rem;
@@ -587,13 +587,10 @@
             transform: scale(0.95);
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             text-align: left;
-            
-            /* Hide scrollbar completely to remove the white line */
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
         .blog-modal-card::-webkit-scrollbar {
             display: none;
         }
@@ -629,7 +626,7 @@
             color: var(--text-muted);
             text-align: right;
             margin-bottom: 10px;
-            margin-right: 45px; /* Prevent overlap with the close button */
+            margin-right: 45px;
             margin-top: 5px;
             font-weight: 600;
         }
@@ -842,38 +839,72 @@
             transform: translateX(22px);
         }
 
-        .socials-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .social-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-decoration: none;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .social-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-color);
-        }
-
-        .social-card h3 {
-            color: var(--text-color);
-            font-size: 1.3rem;
-        }
-
-        .social-card p {
+        /* Socials Design using local asset images */
+        .socials-subtitle {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .socials-title-main {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-color);
+            margin-bottom: 35px;
+        }
+
+        .socials-buttons-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 95px;
+            height: 60px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-icon-btn img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .social-roblox {
+            background-color: #0b0b0b;
+            border-color: rgba(255,255,255,0.1);
+        }
+        .social-roblox:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .social-discord {
+            background-color: #5865F2;
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+        }
+        .social-discord:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.7);
+        }
+
+        .social-youtube {
+            background-color: #ff0000;
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        }
+        .social-youtube:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
         }
 
         footer {
@@ -887,7 +918,7 @@
         }
 
         @media (max-width: 900px) {
-            .features-grid, .socials-grid {
+            .features-grid {
                 grid-template-columns: 1fr;
             }
             .nav-container {
@@ -1103,15 +1134,17 @@
 
         <section id="socials" class="tab-content">
             <div class="socials-container">
-                <h2 data-i18n-key="socialsTitle">Our Socials</h2>
-                <div class="socials-grid">
-                    <a href="https://www.youtube.com/@UltrixLOL" target="_blank" class="social-card">
-                        <h3>Youtube — UltrixLOL</h3>
-                        <p data-i18n-key="youtubeDesc">Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!</p>
+                <p class="socials-subtitle">Get the latest updates and more.</p>
+                <h2 class="socials-title-main">Join our community today!</h2>
+                <div class="socials-buttons-row">
+                    <a href="https://www.roblox.com" target="_blank" class="social-icon-btn social-roblox" title="Roblox">
+                        <img src="assets/roblox.png" alt="Roblox">
                     </a>
-                    <a href="https://discord.gg/fZytpCrdS" target="_blank" class="social-card">
-                        <h3>Discord — PLUS GAMES</h3>
-                        <p data-i18n-key="discordDesc">Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!</p>
+                    <a href="https://discord.gg/fZytpCrdS" target="_blank" class="social-icon-btn social-discord" title="Discord">
+                        <img src="assets/discord.png" alt="Discord">
+                    </a>
+                    <a href="https://www.youtube.com/@UltrixLOL" target="_blank" class="social-icon-btn social-youtube" title="YouTube">
+                        <img src="assets/youtube.png" alt="YouTube">
                     </a>
                 </div>
             </div>
@@ -1170,9 +1203,6 @@
                 tableDetails: "Changelog / Details",
                 comingSoon: "Coming Soon",
                 noData: "No Data Yet.",
-                socialsTitle: "Our Socials",
-                youtubeDesc: "Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!",
-                discordDesc: "Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!",
                 creditOwner: "Owner",
                 creditScripter: "Scripter",
                 creditBuilder: "Builder",
@@ -1217,9 +1247,6 @@
                 tableDetails: "Değişiklik Günlüğü / Detaylar",
                 comingSoon: "Çok Yakında",
                 noData: "Henüz Veri Yok.",
-                socialsTitle: "Sosyal Medya Hesaplarımız",
-                youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici vurguları için kanalımıza abone olun!",
-                discordDesc: "Özel sızıntılar, erken güncelleme duyuruları almak ve diğer oyuncularla bağlantı kurmak için resmi Discord topluluğumuza katılın!",
                 creditOwner: "Sahip",
                 creditScripter: "Yazılımcı",
                 creditBuilder: "İnşaatçı",
@@ -1264,9 +1291,6 @@
                 tableDetails: "Changelog / Details",
                 comingSoon: "Demnächst",
                 noData: "Noch keine Daten.",
-                socialsTitle: "Unsere sozialen Medien",
-                youtubeDesc: "Abonniere unseren Kanal für neue Videos, Einblicke, Update-Trailer und Entwickler-Highlights!",
-                discordDesc: "Trete unserer offiziellen Discord-Community bei, um exklusive Leaks und frühe Ankündigungen zu erhalten!",
                 creditOwner: "Inhaber",
                 creditScripter: "Skripter",
                 creditBuilder: "Builder",
@@ -1379,7 +1403,7 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 35; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
