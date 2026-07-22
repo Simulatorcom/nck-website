@@ -1637,18 +1637,14 @@
         const universeId = "10171618436";
 async function fetchRobloxStats() {
     try {
-        const apiUrl = 'https://games.roblox.com/v1/games?universeIds=' + universeId;
-        const response = await fetch(`https://api.allorigins.win/get?url=` + encodeURIComponent(apiUrl));
-        const parsedData = await response.json();
+        const response = await fetch('/api/roblox?universeId=10171618436');
+        const gameData = await response.json();
         
-        if (parsedData && parsedData.contents) {
-            const gameData = JSON.parse(parsedData.contents);
-            if (gameData && gameData.data && gameData.data.length > 0) {
-                const game = gameData.data[0];
-                document.getElementById('statVisits').innerText = formatNumber(game.visits);
-                document.getElementById('statPlayers').innerText = formatNumber(game.playing);
-                return;
-            }
+        if (gameData && gameData.data && gameData.data.length > 0) {
+            const game = gameData.data[0];
+            document.getElementById('statVisits').innerText = formatNumber(game.visits);
+            document.getElementById('statPlayers').innerText = formatNumber(game.playing);
+            return;
         }
         throw new Error("No data found");
     } catch (error) {
