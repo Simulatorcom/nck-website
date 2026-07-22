@@ -104,7 +104,6 @@
             z-index: 2;
         }
 
-        /* GROßE Katze die vom rechten Rand hervor-pop-up't */
         .side-cat {
             position: fixed;
             right: -320px;
@@ -150,7 +149,7 @@
         .logo-wrapper {
             display: flex;
             align-items: center;
-            gap: 14px; /* Etwas erhöht, damit der größere Abstand passt */
+            gap: 14px;
             margin-left: 55px;
         }
 
@@ -1232,7 +1231,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="blog-modal-overlay" id="blogModalOverlay" onclick="closeBlogModal(event)">
         <div class="blog-modal-card" id="blogModalCard">
             <button class="blog-modal-close" onclick="closeBlogModalDirect()"><i data-lucide="x"></i></button>
@@ -1589,7 +1587,6 @@
                 event.currentTarget.classList.add('active');
             }
 
-            // --- KATZEN LOGIK BEIM TAB WECHSEL ---
             if (tabId === 'socials') {
                 document.body.classList.add('show-cat');
             } else {
