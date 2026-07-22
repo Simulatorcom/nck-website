@@ -385,71 +385,117 @@
             border-color: transparent;
         }
 
+        /* Redesigned Modern Stats Section */
         .influence-section {
             margin: 0 auto;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
         .influence-header {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             text-align: center;
         }
 
         .influence-header h2 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             color: var(--text-color);
+            font-weight: 900;
+            letter-spacing: 0.5px;
         }
 
         .influence-header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .influence-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
             text-align: left;
         }
 
         .inf-card {
-            border-radius: 20px;
-            padding: 35px;
+            border-radius: 24px;
+            padding: 30px;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+        }
+
+        .inf-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(88, 101, 242, 0.15);
+        }
+
+        .inf-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            opacity: 0.8;
+        }
+
+        .stat-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: rgba(88, 101, 242, 0.1);
+            display: flex;
+            align-items: center;
             justify-content: center;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .inf-card:hover .stat-icon-wrapper {
+            background: var(--primary-color);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+        }
+
+        .stat-icon-wrapper svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2.2;
         }
 
         .inf-card h3 {
-            font-size: 3rem;
+            font-size: 2.3rem;
             font-weight: 900;
             margin-bottom: 5px;
-            line-height: 1;
+            line-height: 1.1;
             color: var(--text-color);
+            letter-spacing: -0.5px;
         }
 
         .inf-card h4 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             color: var(--text-color);
         }
 
         .inf-card p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
+            line-height: 1.4;
         }
 
         .features-grid {
@@ -864,17 +910,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 130px; /* Länger gemacht */
-            height: 46px; /* Dünner gemacht */
-            border-radius: 23px; /* Angepasste Rundung */
+            width: 130px;
+            height: 46px;
+            border-radius: 23px;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid var(--border-color);
         }
 
         .social-icon-btn img {
-            width: 32px; /* Icons größer gemacht */
-            height: 32px; /* Icons größer gemacht */
+            width: 32px;
+            height: 32px;
             object-fit: contain;
         }
 
@@ -918,7 +964,7 @@
         }
 
         @media (max-width: 900px) {
-            .features-grid {
+            .features-grid, .influence-grid {
                 grid-template-columns: 1fr;
             }
             .nav-container {
@@ -1090,18 +1136,27 @@
                 </div>
                 <div class="influence-grid">
                     <div class="inf-card visits">
-                        <h3 id="statVisits">Loading...</h3>
-                        <h4 data-i18n-key="infVisitsTitle">Total Visits</h4>
+                        <div class="stat-icon-wrapper"><i data-lucide="eye"></i></div>
+                        <div>
+                            <h3 id="statVisits">2.5M+</h3>
+                            <h4 data-i18n-key="infVisitsTitle">Total Visits</h4>
+                        </div>
                         <p data-i18n-key="infVisitsDesc">Across all of our games - and still climbing.</p>
                     </div>
                     <div class="inf-card discord">
-                        <h3 id="statDiscord">Loading...</h3>
-                        <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
+                        <div class="stat-icon-wrapper"><i data-lucide="users"></i></div>
+                        <div>
+                            <h3 id="statDiscord">15.4K</h3>
+                            <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
+                        </div>
                         <p data-i18n-key="infDiscordDesc">Chatting, trading, and hanging out every day.</p>
                     </div>
                     <div class="inf-card players">
-                        <h3 id="statPlayers">Loading...</h3>
-                        <h4 data-i18n-key="infPlayersTitle">Active Players</h4>
+                        <div class="stat-icon-wrapper"><i data-lucide="activity"></i></div>
+                        <div>
+                            <h3 id="statPlayers">420</h3>
+                            <h4 data-i18n-key="infPlayersTitle">Active Players</h4>
+                        </div>
                         <p data-i18n-key="infPlayersDesc">Online in our games right now.</p>
                     </div>
                 </div>
