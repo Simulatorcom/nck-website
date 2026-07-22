@@ -520,6 +520,177 @@
             color: var(--text-muted);
         }
 
+        .update-action-cell {
+            text-align: right;
+        }
+
+        .update-btn {
+            background: rgba(128, 128, 128, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px; /* Square layout with UI Corner */
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .update-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2;
+        }
+
+        .update-btn:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        /* Big Games Style Blog Modal overlay */
+        .blog-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .blog-modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .blog-modal-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 750px;
+            max-height: 85vh;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+        }
+
+        .blog-modal-overlay.open .blog-modal-card {
+            transform: scale(1);
+        }
+
+        .blog-modal-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(128, 128, 128, 0.1);
+            border: none;
+            color: var(--text-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .blog-modal-close:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Big Games Blog Content Layout */
+        .blog-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .blog-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .blog-section-heading {
+            color: #f3e600; /* Big games style bright yellow heading */
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 30px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-item-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .blog-item-desc {
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .blog-item-subdesc {
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .blog-list {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .blog-list li {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .blog-tag-unique {
+            color: #ff4757;
+            font-weight: 700;
+        }
+
         .credits-list {
             display: flex;
             flex-direction: column;
@@ -742,7 +913,7 @@
             <div class="nav-center-group">
                 <ul class="nav-tabs">
                     <li class="nav-tab active" onclick="switchTab('home', event)"><i data-lucide="home"></i> <span data-i18n-key="navHome">Home</span></li>
-                    <li class="nav-tab" onclick="switchTab('updates', event)"><i data-lucide="refresh-cw"></i> <span data-i18n-key="navUpdates">Updates</span></li>
+                    <li class="nav-tab" onclick="switchTab('updates', event)"><i data-lucide="file-text"></i> <span data-i18n-key="navUpdates">Blogs</span></li>
                     <li class="nav-tab" onclick="switchTab('socials', event)"><i data-lucide="share-2"></i> <span data-i18n-key="navSocials">Socials</span></li>
                     <li class="nav-tab" onclick="switchTab('stats', event)"><i data-lucide="bar-chart-2"></i> <span data-i18n-key="navStats">Stats</span></li>
                     <li class="nav-tab" onclick="switchTab('credits', event)"><i data-lucide="award"></i> <span data-i18n-key="navCredits">Credits</span></li>
@@ -810,6 +981,39 @@
         </div>
     </div>
 
+    <!-- Big Games Style Blog Modal Popup -->
+    <div class="blog-modal-overlay" id="blogModalOverlay" onclick="closeBlogModal(event)">
+        <div class="blog-modal-card" id="blogModalCard">
+            <button class="blog-modal-close" onclick="closeBlogModalDirect()"><i data-lucide="x"></i></button>
+            <div class="blog-date" id="modalBlogDate">August 08, 2021</div>
+            <h1 class="blog-title" id="modalBlogTitle">Fantasy Update</h1>
+            <p class="blog-subtitle" id="modalBlogSubtitle">The full changelog for the Fantasy Update in Pet Simulator X!</p>
+            
+            <div class="blog-section-heading">Added</div>
+            
+            <div class="blog-item-title">24 New Pets</div>
+            <div class="blog-item-desc">Lots of new cuddly friends have been added to the game waiting to be added to your collection!</div>
+            <div class="blog-item-subdesc">This includes 3 new Exclusive Pets and 1 achievement pet.</div>
+
+            <div class="blog-item-title">Fantasy World</div>
+            <div class="blog-item-desc">Travel to the fantasy world and discover new areas, eggs, pets, & more!</div>
+            <div class="blog-item-desc">Areas are split into several floating islands and can be traveled to via portals! A lot more to be added here over next week, so stay tuned.</div>
+            <div class="blog-item-subdesc">As of now, there are 3 new areas and 3 new eggs.</div>
+
+            <div class="blog-item-title">Enchanting Circle</div>
+            <div class="blog-item-desc">Enchant your pet(s)... at a cost! You can access the enchanting circle in the Fantasy World.</div>
+            <div class="blog-item-subdesc">Currently, it costs 10,000 diamonds per use. Bear in mind that existing enchantments will be overwritten.</div>
+
+            <div class="blog-item-title">New Enchantments</div>
+            <ul class="blog-list">
+                <li>- <b>Fantasy Coins:</b> Pet earns more Fantasy Coins</li>
+                <li>- <span class="blog-tag-unique">[UNIQUE]</span> <b>Glittering:</b> Pet randomly spawns diamonds</li>
+                <li>- <span class="blog-tag-unique">[UNIQUE]</span> <b>Magnet:</b> Pet can collect orbs for you</li>
+                <li>- <span class="blog-tag-unique">[UNIQUE]</span> <b>Royalty:</b> Pet does +100% damage, earns +100% more Diamonds, and moves +50% faster</li>
+            </ul>
+        </div>
+    </div>
+
     <main>
         <section id="home" class="tab-content active">
             <div class="hero">
@@ -865,13 +1069,14 @@
 
         <section id="updates" class="tab-content">
             <div class="updates-container">
-                <h2 data-i18n-key="updatesTitle">Game Updates Log</h2>
+                <h2 data-i18n-key="updatesTitle">Blogs</h2>
                 <table class="updates-table">
                     <thead>
                         <tr>
                             <th data-i18n-key="tableVer">Version</th>
                             <th data-i18n-key="tableDate">Release Date</th>
                             <th data-i18n-key="tableDetails">Changelog / Details</th>
+                            <th class="update-action-cell"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -879,6 +1084,8 @@
                             <td>v0.0.0</td>
                             <td data-i18n-key="comingSoon">Coming Soon</td>
                             <td data-i18n-key="noData">No Data Yet.</td>
+                            <!-- Square UI corner button with eye / search icon to open modal popup instead of new page -->
+                            <td class="update-action-cell"><button class="update-btn" onclick="openBlogModal('v0.0.0')"><i data-lucide="eye"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -927,7 +1134,7 @@
         const translations = {
             en: {
                 navHome: "Home",
-                navUpdates: "Updates",
+                navUpdates: "Blogs",
                 navSocials: "Socials",
                 navStats: "Stats",
                 navCredits: "Credits",
@@ -948,15 +1155,19 @@
                 feat2Desc: "Enjoy modern gameplay improvements inspired by Pet Simulator 99, including enhanced progression and trading systems.",
                 feat3Title: "Custom Content",
                 feat3Desc: "Discover completely unique, custom-made pets, exclusive enchantments, and events you won't find anywhere else!",
-                updatesTitle: "Game Updates Log",
+                updatesTitle: "Blogs",
                 tableVer: "Version",
                 tableDate: "Release Date",
                 tableDetails: "Changelog / Details",
                 comingSoon: "Coming Soon",
                 noData: "No Data Yet.",
                 socialsTitle: "Our Socials",
-                discordDesc: "Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!",
                 youtubeDesc: "Subscribe to our channel for new videos, sneak peeks, update trailers, and developer highlights!",
+                discordDesc: "Join our official Discord community to get exclusive leaks, early update announcements, and connect with other players!",
+                creditOwner: "Owner",
+                creditScripter: "Scripter",
+                creditBuilder: "Builder",
+                footerText: "&copy; 2026 PSX+ (Plus). Not officially affiliated with BIG Games.",
                 settingsTitle: "Settings",
                 themeLabel: "Theme Mode",
                 themeLight: "Light",
@@ -966,44 +1177,44 @@
                 prefLabel: "Preferences",
                 settingAnimations: "UI Animations",
                 settingBlur: "Background Blur",
-                settingHighContrast: "High Contrast Mode",
-                creditOwner: "Owner",
-                creditScripter: "Scripter",
-                creditBuilder: "Builder",
-                footerText: "&copy; 2026 PSX+ (Plus). Not officially affiliated with BIG Games."
+                settingHighContrast: "High Contrast Mode"
             },
             tr: {
                 navHome: "Ana Sayfa",
-                navUpdates: "Güncellemeler",
+                navUpdates: "Bloglar",
                 navSocials: "Sosyal Medya",
                 navStats: "İstatistikler",
                 navCredits: "Emeği Geçenler",
                 heroTitle: "PSX+ (Plus)",
-                heroDesc: "PSX+ (Plus), Pet Simulator 99 mekaniklerini ve size özel özel özellikleri birleştiren nihai Roblox evcil hayvan simülatörü deneyimi!",
+                heroDesc: "PSX+ (Plus), Pet Simulator 99 mekaniklerini ve sadece sizin için yapılmış özel içerikleri birleştiren nihai Roblox evcil hayvan simülatörü deneyimi!",
                 ctaPlay: "Roblox'ta Oyna",
                 infHeaderTitle: "Topluluk İstatistikleri",
                 infHeaderDesc: "Plus Games topluluk istatistiklerine hızlı bir bakış.",
                 infVisitsTitle: "Toplam Ziyaret",
-                infVisitsDesc: "Tüm oyunlarımızda - ve hala artıyor.",
+                infVisitsDesc: "Tüm oyunlarımızda - ve hala yükseliyor.",
                 infDiscordTitle: "Discord Üyeleri",
-                infDiscordDesc: "Her gün sohbet ediyor, ticaret yapıyor ve takılıyoruz.",
+                infDiscordDesc: "Her gün sohbet ediyor, takas yapıyor ve takılıyoruz.",
                 infPlayersTitle: "Aktif Oyuncular",
-                infPlayersDesc: "Şu anda oyunlarımızda çevrimiçi olanlar.",
+                infPlayersDesc: "Şu anda oyunlarımızda çevrimiçi.",
                 feat1Title: "Klasik PSX Dünyası",
-                feat1Desc: "Klasik dünyalar, kilidi açılan alanlar ve en sevdiğiniz retro evcil hayvanları yumurtadan çıkarma ile nostaljiyi yeniden yaşayın.",
+                feat1Desc: "Klasik dünyalar, alanların kilidini açma ve en sevdiğiniz retro evcil hayvanları yumurtadan çıkarma nostaljisini yeniden yaşayın.",
                 feat2Title: "PS99 Mekanikleri",
-                feat2Desc: "Gelişmiş ilerleme ve ticaret sistemleri dahil olmak üzere Pet Simulator 99'dan ilham alan modern oynanış iyileştirmelerinin tadını çıkarın.",
+                feat2Desc: "Gelişmiş ilerleme ve takas sistemleri dahil olmak üzere Pet Simulator 99'dan ilham alan modern oyun geliştirmelerinin keyfini çıkarın.",
                 feat3Title: "Özel İçerik",
-                feat3Desc: "Başka hiçbir yerde bulamayacağınız tamamen benzersiz, özel yapım evcil hayvanları, özel büyüleri ve etkinlikleri keşfedin!",
-                updatesTitle: "Oyun Güncelleme Günlüğü",
+                feat3Desc: "Hiçbir yerde bulamayacağınız tamamen benzersiz, özel yapım evcil hayvanları, özel büyüleri ve etkinlikleri keşfedin!",
+                updatesTitle: "Bloglar",
                 tableVer: "Sürüm",
                 tableDate: "Yayın Tarihi",
                 tableDetails: "Değişiklik Günlüğü / Detaylar",
                 comingSoon: "Çok Yakında",
                 noData: "Henüz Veri Yok.",
-                socialsTitle: "Sosyal Medyamız",
+                socialsTitle: "Sosyal Medya Hesaplarımız",
+                youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici vurguları için kanalımıza abone olun!",
                 discordDesc: "Özel sızıntılar, erken güncelleme duyuruları almak ve diğer oyuncularla bağlantı kurmak için resmi Discord topluluğumuza katılın!",
-                youtubeDesc: "Yeni videolar, önizlemeler, güncelleme fragmanları ve geliştirici öne çıkanları için kanalımıza abone olun!",
+                creditOwner: "Sahip",
+                creditScripter: "Yazılımcı",
+                creditBuilder: "İnşaatçı",
+                footerText: "&copy; 2026 PSX+ (Plus). BIG Games ile resmi olarak bağlantılı değildir.",
                 settingsTitle: "Ayarlar",
                 themeLabel: "Tema Modu",
                 themeLight: "Açık",
@@ -1013,44 +1224,44 @@
                 prefLabel: "Tercihler",
                 settingAnimations: "Arayüz Animasyonları",
                 settingBlur: "Arka Plan Bulanıklığı",
-                settingHighContrast: "Yüksek Kontrast Modu",
-                creditOwner: "Sahip",
-                creditScripter: "Kodlayıcı",
-                creditBuilder: "İnşaatçı / Mimar",
-                footerText: "&copy; 2026 PSX+ (Plus). BIG Games ile resmi bir bağlantısı yoktur."
+                settingHighContrast: "Yüksek Kontrast Modu"
             },
             de: {
                 navHome: "Startseite",
-                navUpdates: "Updates",
+                navUpdates: "Blogs",
                 navSocials: "Soziale Medien",
                 navStats: "Statistiken",
                 navCredits: "Mitwirkende",
                 heroTitle: "PSX+ (Plus)",
-                heroDesc: "Das ultimative Roblox-Pet-Simulator-Erlebnis, das die besten Mechaniken von PSX+ (Plus), Pet Simulator 99 und exklusive Custom-Features für dich vereint!",
+                heroDesc: "Das ultimative Roblox-Pet-Simulator-Erlebnis, das die besten Mechaniken von PSX+, Pet Simulator 99 und exklusiven eigenen Features vereint!",
                 ctaPlay: "Auf Roblox spielen",
                 infHeaderTitle: "Community-Statistiken",
-                infHeaderDesc: "Ein kurzer Blick auf die Statistiken der Plus Games Community.",
+                infHeaderDesc: "Ein kurzer Blick auf die Statistiken der Plus Games-Community.",
                 infVisitsTitle: "Gesamte Besuche",
-                infVisitsDesc: "Über alle unsere Spiele hinweg – und es steigt weiter.",
+                infVisitsDesc: "Über alle unsere Spiele hinweg - und es steigt weiter.",
                 infDiscordTitle: "Discord-Mitglieder",
-                infDiscordDesc: "Jeden Tag am Chatten, Handeln und Abhängen.",
+                infDiscordDesc: "Jeden Tag chatten, handeln und abhängen.",
                 infPlayersTitle: "Aktive Spieler",
                 infPlayersDesc: "Gerade online in unseren Spielen.",
                 feat1Title: "Klassische PSX-Welt",
-                feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, dem Freischalten von Bereichen und dem Ausbrüten deiner Lieblings-Retropets.",
+                feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, dem Freischalten von Bereichen und dem Ausbrüten deiner Lieblings-Retro-Haustiere.",
                 feat2Title: "PS99-Mechaniken",
-                feat2Desc: "Genieße moderne Gameplay-Verbesserungen inspiriert von Pet Simulator 99, einschließlich verbesserter Fortschritts- und Handelssysteme.",
+                feat2Desc: "Genieße moderne Gameplay-Verbesserungen, inspiriert von Pet Simulator 99, einschließlich verbesserter Fortschritts- und Handelssysteme.",
                 feat3Title: "Benutzerdefinierte Inhalte",
                 feat3Desc: "Entdecke völlig einzigartige, maßgeschneiderte Haustiere, exklusive Verzauberungen und Events, die du sonst nirgendwo findest!",
-                updatesTitle: "Spiel-Update-Protokoll",
+                updatesTitle: "Blogs",
                 tableVer: "Version",
                 tableDate: "Veröffentlichungsdatum",
-                tableDetails: "Änderungsprotokoll / Details",
+                tableDetails: "Changelog / Details",
                 comingSoon: "Demnächst",
                 noData: "Noch keine Daten.",
-                socialsTitle: "Unsere sozialen Netzwerke",
-                discordDesc: "Trete unserer offiziellen Discord-Community bei, um exklusive Leaks und frühe Update-Ankündigungen zu erhalten und dich mit anderen Spielern zu vernetzen!",
+                socialsTitle: "Unsere sozialen Medien",
                 youtubeDesc: "Abonniere unseren Kanal für neue Videos, Einblicke, Update-Trailer und Entwickler-Highlights!",
+                discordDesc: "Trete unserer offiziellen Discord-Community bei, um exklusive Leaks und frühe Ankündigungen zu erhalten!",
+                creditOwner: "Inhaber",
+                creditScripter: "Skripter",
+                creditBuilder: "Builder",
+                footerText: "&copy; 2026 PSX+ (Plus). Nicht offiziell mit BIG Games verbunden.",
                 settingsTitle: "Einstellungen",
                 themeLabel: "Themenmodus",
                 themeLight: "Hell",
@@ -1060,48 +1271,92 @@
                 prefLabel: "Präferenzen",
                 settingAnimations: "UI-Animationen",
                 settingBlur: "Hintergrundunschärfe",
-                settingHighContrast: "Modus für hohen Kontrast",
-                creditOwner: "Inhaber",
-                creditScripter: "Skripter",
-                creditBuilder: "Builder",
-                footerText: "&copy; 2026 PSX+ (Plus). Nicht officially mit BIG Games verbunden."
+                settingHighContrast: "Modus mit hohem Kontrast"
             }
         };
 
         let currentLang = 'en';
 
-        function formatCount(num) {
-            if (num >= 1000) {
-                let formatted = (num / 1000).toFixed(1);
-                if (formatted.endsWith('.0')) {
-                    formatted = Math.floor(num / 1000);
-                }
-                return formatted + 'K+';
+        function switchTab(tabId, event) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
             }
-            return num + '+';
         }
 
-        async function fetchLiveStats() {
-            const robloxUniverseId = "10171618436";
-            const discordGuildId = "1501589918596464760";
-
-            try {
-                const robloxRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${robloxUniverseId}`);
-                const robloxData = await robloxRes.json();
-                if (robloxData && robloxData.data && robloxData.data.length > 0) {
-                    const gameInfo = robloxData.data[0];
-                    document.getElementById('statVisits').textContent = formatCount(gameInfo.visits);
-                    document.getElementById('statPlayers').textContent = formatCount(gameInfo.playing);
-                }
-            } catch (e) {
-                console.warn("Roblox API Proxy-Fehler, verwende Standardwerte.");
-            }
-
-document.getElementById('statDiscord').textContent = "0+";
+        function toggleSettingsDrawer() {
+            document.getElementById('settingsDrawer').classList.toggle('open');
+            document.getElementById('drawerOverlay').classList.toggle('open');
         }
 
-        fetchLiveStats();
-        setInterval(fetchLiveStats, 30000);
+        function setTheme(themeName, event) {
+            document.body.setAttribute('data-theme', themeName);
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const dict = translations[lang];
+            if (!dict) return;
+            document.querySelectorAll('[data-i18n-key]').forEach(el => {
+                const key = el.getAttribute('data-i18n-key');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+        }
+
+        function toggleAnimations(checked) {
+            if (!checked) {
+                document.body.classList.add('no-animations');
+            } else {
+                document.body.classList.remove('no-animations');
+            }
+        }
+
+        function toggleBlur(checked) {
+            const header = document.querySelector('header');
+            if (!checked) {
+                header.style.backdropFilter = 'none';
+            } else {
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        }
+
+        function toggleContrast(checked) {
+            if (checked) {
+                document.documentElement.style.setProperty('--border-color', '#ffffff');
+            } else {
+                const theme = document.body.getAttribute('data-theme');
+                if (theme === 'light') {
+                    document.documentElement.style.setProperty('--border-color', 'rgba(0, 0, 0, 0.1)');
+                } else {
+                    document.documentElement.style.setProperty('--border-color', 'rgba(255, 255, 255, 0.08)');
+                }
+            }
+        }
+
+        function openBlogModal(version) {
+            document.getElementById('blogModalOverlay').classList.add('open');
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 50);
+        }
+
+        function closeBlogModal(event) {
+            if (event.target.id === 'blogModalOverlay') {
+                document.getElementById('blogModalOverlay').classList.remove('open');
+            }
+        }
+
+        function closeBlogModalDirect() {
+            document.getElementById('blogModalOverlay').classList.remove('open');
+        }
 
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
@@ -1115,142 +1370,43 @@ document.getElementById('statDiscord').textContent = "0+";
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.6;
-                this.speedY = (Math.random() - 0.5) * 0.6;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-                    this.reset();
-                }
-            }
-            draw() {
-                ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--text-color').trim() === '#ffffff' 
-                    ? `rgba(255, 255, 255, ${this.opacity})` 
-                    : `rgba(88, 101, 242, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < 60; i++) {
-            particles.push(new Particle());
+        for (let i = 0; i < 35; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: (Math.random() - 0.5) * 0.5,
+                alpha: Math.random() * 0.5 + 0.1
+            });
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = document.body.getAttribute('data-theme') === 'light' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)';
+            
             particles.forEach(p => {
-                p.update();
-                p.draw();
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.globalAlpha = p.alpha;
+                ctx.fill();
             });
+
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
 
-        function switchTab(tabId, event) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
-
-            const targetTab = document.getElementById(tabId);
-            if (targetTab) targetTab.classList.add('active');
-
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
-            } else {
-                document.querySelectorAll('.nav-tab').forEach(tab => {
-                    if(tab.getAttribute('onclick')?.includes(tabId)) {
-                        tab.classList.add('active');
-                    }
-                });
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleSettingsDrawer() {
-            const drawer = document.getElementById('settingsDrawer');
-            const overlay = document.getElementById('drawerOverlay');
-            drawer.classList.toggle('open');
-            overlay.classList.toggle('open');
-        }
-
-        function setTheme(themeName, event) {
-            if (event) event.preventDefault();
-            document.body.setAttribute('data-theme', themeName);
-            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
-            } else {
-                document.querySelectorAll('.theme-btn').forEach(btn => {
-                    if(btn.getAttribute('onclick')?.includes(themeName)) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
-        }
-
-        function changeLanguage(lang) {
-            currentLang = lang;
-            document.getElementById('languageSelect').value = lang;
-            const translationDict = translations[lang] || translations['en'];
-
-            document.querySelectorAll('[data-i18n-key]').forEach(el => {
-                const key = el.getAttribute('data-i18n-key');
-                if (translationDict[key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translationDict[key];
-                    } else {
-                        el.innerHTML = translationDict[key];
-                    }
-                }
-            });
-        }
-
-        function toggleAnimations(enabled) {
-            if (enabled) {
-                document.body.classList.remove('no-animations');
-                canvas.style.display = 'block';
-            } else {
-                document.body.classList.add('no-animations');
-                canvas.style.display = 'none';
-            }
-        }
-
-        function toggleBlur(enabled) {
-            const header = document.querySelector('header');
-            const overlay = document.querySelector('.drawer-overlay');
-            if (enabled) {
-                header.style.backdropFilter = 'blur(10px)';
-                if(overlay) overlay.style.backdropFilter = 'blur(4px)';
-            } else {
-                header.style.backdropFilter = 'none';
-                if(overlay) overlay.style.backdropFilter = 'none';
-            }
-        }
-
-        function toggleContrast(enabled) {
-            if (enabled) {
-                document.documentElement.style.setProperty('--border-color', 'var(--text-color)');
-            } else {
-                document.documentElement.style.removeProperty('--border-color');
-            }
-        }
-
-document.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
-    changeLanguage('en');
-});
+        setTimeout(() => {
+            lucide.createIcons();
+        }, 100);
     </script>
 </body>
 </html>
