@@ -818,7 +818,7 @@
                 </div>
                 <h1 data-i18n-key="heroTitle">PSX+ (Plus)</h1>
                 <p data-i18n-key="heroDesc">The ultimate Roblox pet simulator experience combining the best mechanics of PSX+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!</p>
-                <a href="https://www.roblox.com/games/119993214188360" target="_blank" class="cta-button" data-i18n-key="ctaPlay">Play on Roblox</a>
+                <a href="https://www.roblox.com" target="_blank" class="cta-button" data-i18n-key="ctaPlay">Play on Roblox</a>
             </div>
 
             <div class="features-grid">
@@ -1083,7 +1083,7 @@
 
         // Zuverlässiger Fetch mit automatischen Fallbacks gegen CORS-Sperren
         async function fetchLiveStats() {
-            const robloxUniverseId = "119993214188360";
+            const robloxUniverseId = "10171618436";
             const discordGuildId = "1509903262051074138";
 
             // 1. Roblox API abrufen
@@ -1263,38 +1263,10 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            function formatCounter(number) {
-    if (number >= 1000000) {
-        return (number / 1000000).toFixed(1).replace(".0", "") + "M+";
-    }
-
-    if (number >= 1000) {
-        return (number / 1000).toFixed(1).replace(".0", "") + "K+";
-    }
-
-    return number + "+";
-}
-
-function updateCounters() {
-    const counters = {
-        statVisits: LIVE_ROBLOX_VISITS,
-        statDiscord: LIVE_DISCORD_COUNT,
-        statPlayers: LIVE_ROBLOX_PLAYERS
-    };
-
-    Object.keys(counters).forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = formatCounter(counters[id]);
-        }
-    });
-}
-
-updateCounters();
-            lucide.createIcons();
-            changeLanguage('en');
-        });
+document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+    changeLanguage('en');
+});
     </script>
 </body>
 </html>
