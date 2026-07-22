@@ -1264,6 +1264,34 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            function formatCounter(number) {
+    if (number >= 1000000) {
+        return (number / 1000000).toFixed(1).replace(".0", "") + "M+";
+    }
+
+    if (number >= 1000) {
+        return (number / 1000).toFixed(1).replace(".0", "") + "K+";
+    }
+
+    return number + "+";
+}
+
+function updateCounters() {
+    const counters = {
+        statVisits: LIVE_ROBLOX_VISITS,
+        statDiscord: LIVE_DISCORD_COUNT,
+        statPlayers: LIVE_ROBLOX_PLAYERS
+    };
+
+    Object.keys(counters).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = formatCounter(counters[id]);
+        }
+    });
+}
+
+updateCounters();
             lucide.createIcons();
             changeLanguage('en');
         });
