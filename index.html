@@ -1081,12 +1081,10 @@
             return num + '+';
         }
 
-        // Zuverlässiger Fetch mit automatischen Fallbacks gegen CORS-Sperren
         async function fetchLiveStats() {
             const robloxUniverseId = "10171618436";
             const discordGuildId = "1509903262051074138";
 
-            // 1. Roblox API abrufen
             try {
                 const robloxRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${robloxUniverseId}`);
                 const robloxData = await robloxRes.json();
@@ -1099,18 +1097,15 @@
                 console.warn("Roblox API Proxy-Fehler, verwende Standardwerte.");
             }
 
-            // 2. Discord API Widget abrufen
             try {
                 const discordRes = await fetch(`https://discord.com/api/guilds/${discordGuildId}/widget.json`);
                 const discordData = await discordRes.json();
                 if (discordData && discordData.presence_count !== undefined) {
-                    // Falls das Widget die Anzahl ausgibt, nehmen wir einen realistischen Multiplikator oder den direkten Wert
                     let members = discordData.presence_count * 4; 
-                    if (members < 100) members = 1500; // Schutz, falls das Widget nur Online-User liefert
+                    if (members < 100) members = 1500;
                     document.getElementById('statDiscord').textContent = formatCount(members);
                 }
             } catch (e) {
-                // Fällt automatisch auf den voreingestellten Wert zurück, falls Discord das Widget blockiert
                 console.warn("Discord Widget blockiert oder deaktiviert (Server-Einstellungen -> Widget prüfen).");
             }
         }
@@ -1118,7 +1113,6 @@
         fetchLiveStats();
         setInterval(fetchLiveStats, 30000);
 
-        // Particle Background Logic
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
