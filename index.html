@@ -845,17 +845,17 @@
                 </div>
                 <div class="influence-grid">
                     <div class="inf-card visits">
-                        <h3 id="statVisits">10K+</h3>
+                        <h3 id="statVisits">Loading...</h3>
                         <h4 data-i18n-key="infVisitsTitle">Total Visits</h4>
                         <p data-i18n-key="infVisitsDesc">Across all of our games - and still climbing.</p>
                     </div>
                     <div class="inf-card discord">
-                        <h3 id="statDiscord">1.5K+</h3>
+                        <h3 id="statDiscord">Loading...</h3>
                         <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
                         <p data-i18n-key="infDiscordDesc">Chatting, trading, and hanging out every day.</p>
                     </div>
                     <div class="inf-card players">
-                        <h3 id="statPlayers">5+</h3>
+                        <h3 id="statPlayers">Loading...</h3>
                         <h4 data-i18n-key="infPlayersTitle">Active Players</h4>
                         <p data-i18n-key="infPlayersDesc">Online in our games right now.</p>
                     </div>
@@ -1097,17 +1097,7 @@
                 console.warn("Roblox API Proxy-Fehler, verwende Standardwerte.");
             }
 
-            try {
-                const discordRes = await fetch(`https://discord.com/api/guilds/${discordGuildId}/widget.json`);
-                const discordData = await discordRes.json();
-                if (discordData && discordData.presence_count !== undefined) {
-                    let members = discordData.presence_count * 4; 
-                    if (members < 100) members = 1500;
-                    document.getElementById('statDiscord').textContent = formatCount(members);
-                }
-            } catch (e) {
-                console.warn("Discord Widget blockiert oder deaktiviert (Server-Einstellungen -> Widget prüfen).");
-            }
+document.getElementById('statDiscord').textContent = "0+";
         }
 
         fetchLiveStats();
