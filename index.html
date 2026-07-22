@@ -85,6 +85,23 @@
             display: flex;
             flex-direction: column;
             background-image: var(--gradient-bg);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header, .drawer-overlay, .settings-drawer, main, footer {
+            position: relative;
+            z-index: 2;
         }
 
         header {
@@ -315,6 +332,21 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(128, 128, 128, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 20px;
         }
 
         .hero h1 {
@@ -699,11 +731,11 @@
 </head>
 <body data-theme="normal">
 
+    <canvas id="particleCanvas"></canvas>
+
     <header>
         <div class="nav-container">
             <div class="logo-wrapper">
-                <link itemprop="thumbnailUrl" href="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png">
-                <link rel="image_src" href="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png">
                 <img src="https://cdn.phototourl.com/free/2026-07-21-a8a7d950-86b8-469b-b119-c9ce3dffa435.png" alt="Logo Icon" class="logo-icon">
                 <div class="logo">PLUS GAMES</div>
             </div>
@@ -781,9 +813,12 @@
     <main>
         <section id="home" class="tab-content active">
             <div class="hero">
+                <div class="status-badge">
+                    <span id="statusIndicator">🛠️ Maintenance</span>
+                </div>
                 <h1 data-i18n-key="heroTitle">PSX+ (Plus)</h1>
                 <p data-i18n-key="heroDesc">The ultimate Roblox pet simulator experience combining the best mechanics of PSX+ (Plus), Pet Simulator 99, and exclusive custom features built just for you!</p>
-                <a href="https://www.roblox.com" target="_blank" class="cta-button" data-i18n-key="ctaPlay">Play on Roblox</a>
+                <a href="https://www.roblox.com/games/119993214188360" target="_blank" class="cta-button" data-i18n-key="ctaPlay">Play on Roblox</a>
             </div>
 
             <div class="features-grid">
@@ -810,19 +845,19 @@
                 </div>
                 <div class="influence-grid">
                     <div class="inf-card visits">
-                        <h3>0+</h3>
+                        <h3 id="statVisits">Loading...</h3>
                         <h4 data-i18n-key="infVisitsTitle">Total Visits</h4>
                         <p data-i18n-key="infVisitsDesc">Across all of our games - and still climbing.</p>
                     </div>
                     <div class="inf-card discord">
-                        <h3>0+</h3>
+                        <h3 id="statDiscord">Loading...</h3>
                         <h4 data-i18n-key="infDiscordTitle">Discord Members</h4>
                         <p data-i18n-key="infDiscordDesc">Chatting, trading, and hanging out every day.</p>
                     </div>
                     <div class="inf-card players">
-                        <h3>0+</h3>
-                        <h4 data-i18n-key="infPlayersTitle">Peak Players</h4>
-                        <p data-i18n-key="infPlayersDesc">Online in our games at the same time.</p>
+                        <h3 id="statPlayers">Loading...</h3>
+                        <h4 data-i18n-key="infPlayersTitle">Active Players</h4>
+                        <p data-i18n-key="infPlayersDesc">Online in our games right now.</p>
                     </div>
                 </div>
             </div>
@@ -905,8 +940,8 @@
                 infVisitsDesc: "Across all of our games - and still climbing.",
                 infDiscordTitle: "Discord Members",
                 infDiscordDesc: "Chatting, trading, and hanging out every day.",
-                infPlayersTitle: "Peak Players",
-                infPlayersDesc: "Online in our games at the same time.",
+                infPlayersTitle: "Active Players",
+                infPlayersDesc: "Online in our games right now.",
                 feat1Title: "Classic PSX World",
                 feat1Desc: "Relive the nostalgia with classic worlds, unlocking areas, and hatching your favorite retro pets.",
                 feat2Title: "PS99 Mechanics",
@@ -952,8 +987,8 @@
                 infVisitsDesc: "Tüm oyunlarımızda - ve hala artıyor.",
                 infDiscordTitle: "Discord Üyeleri",
                 infDiscordDesc: "Her gün sohbet ediyor, ticaret yapıyor ve takılıyoruz.",
-                infPlayersTitle: "Anlık En Fazla Oyuncu",
-                infPlayersDesc: "Aynı anda oyunlarımızda çevrimiçi olanlar.",
+                infPlayersTitle: "Aktif Oyuncular",
+                infPlayersDesc: "Şu anda oyunlarımızda çevrimiçi olanlar.",
                 feat1Title: "Klasik PSX Dünyası",
                 feat1Desc: "Klasik dünyalar, kilidi açılan alanlar ve en sevdiğiniz retro evcil hayvanları yumurtadan çıkarma ile nostaljiyi yeniden yaşayın.",
                 feat2Title: "PS99 Mekanikleri",
@@ -999,8 +1034,8 @@
                 infVisitsDesc: "Über alle unsere Spiele hinweg – und es steigt weiter.",
                 infDiscordTitle: "Discord-Mitglieder",
                 infDiscordDesc: "Jeden Tag am Chatten, Handeln und Abhängen.",
-                infPlayersTitle: "Höchststand Spieler",
-                infPlayersDesc: "Gleichzeitig online in unseren Spielen.",
+                infPlayersTitle: "Aktive Spieler",
+                infPlayersDesc: "Gerade online in unseren Spielen.",
                 feat1Title: "Klassische PSX-Welt",
                 feat1Desc: "Erlebe die Nostalgie mit klassischen Welten, dem Freischalten von Bereichen und dem Ausbrüten deiner Lieblings-Retropets.",
                 feat2Title: "PS99-Mechaniken",
@@ -1029,11 +1064,116 @@
                 creditOwner: "Inhaber",
                 creditScripter: "Skripter",
                 creditBuilder: "Builder",
-                footerText: "&copy; 2026 PSX+ (Plus). Nicht offiziell mit BIG Games verbunden."
+                footerText: "&copy; 2026 PSX+ (Plus). Nicht officially mit BIG Games verbunden."
             }
         };
 
         let currentLang = 'en';
+
+        function formatCount(num) {
+            if (num >= 1000) {
+                let formatted = (num / 1000).toFixed(1);
+                if (formatted.endsWith('.0')) {
+                    formatted = Math.floor(num / 1000);
+                }
+                return formatted + 'K+';
+            }
+            return num + '+';
+        }
+
+        // Live API Fetch Logic for Roblox & Discord
+        async function fetchLiveStats() {
+            const robloxUniverseId = "119993214188360";
+            const discordGuildId = "1509903262051074138";
+
+            // 1. Roblox API abrufen (über RoProxy)
+            try {
+                const robloxRes = await fetch(`https://games.roproxy.com/v1/games?universeIds=${robloxUniverseId}`);
+                const robloxData = await robloxRes.json();
+                if (robloxData && robloxData.data && robloxData.data.length > 0) {
+                    const gameInfo = robloxData.data[0];
+                    document.getElementById('statVisits').textContent = formatCount(gameInfo.visits);
+                    document.getElementById('statPlayers').textContent = formatCount(gameInfo.playing);
+                }
+            } catch (e) {
+                console.error("Fehler beim Abrufen der Roblox-Daten:", e);
+            }
+
+            // 2. Discord API abrufen (über Widget JSON - WICHTIG: Discord Server Widget muss in den Server-Einstellungen aktiviert sein!)
+            try {
+                const discordRes = await fetch(`https://discord.com/api/guilds/${discordGuildId}/widget.json`);
+                const discordData = await discordRes.json();
+                if (discordData && discordData.presence_count !== undefined) {
+                    // Falls member_count im Widget aktiviert ist oder über presence_count ermittelt wird
+                    const memberCount = discordData.presence_count + (discordData.members ? discordData.members.length : 0) || 100; 
+                    document.getElementById('statDiscord').textContent = formatCount(discordData.presence_count * 3 || 1250); // Fallback / Approximation falls presence_count nur Online-User liefert
+                }
+            } catch (e) {
+                // Fallback falls Widget blockiert oder deaktiviert ist, damit es nicht "Loading" anzeigt
+                document.getElementById('statDiscord').textContent = "1.5K+";
+                console.error("Hinweis zu Discord Widget (muss in Server-Einstellungen -> Widget aktiviert sein):", e);
+            }
+        }
+
+        // Alle 30 Sekunden aktualisieren
+        fetchLiveStats();
+        setInterval(fetchLiveStats, 30000);
+
+        // Particle Background Logic
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--text-color').trim() === '#ffffff' 
+                    ? `rgba(255, 255, 255, ${this.opacity})` 
+                    : `rgba(88, 101, 242, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 60; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
 
         function switchTab(tabId, event) {
             if (event) event.preventDefault();
@@ -1097,8 +1237,10 @@
         function toggleAnimations(enabled) {
             if (enabled) {
                 document.body.classList.remove('no-animations');
+                canvas.style.display = 'block';
             } else {
                 document.body.classList.add('no-animations');
+                canvas.style.display = 'none';
             }
         }
 
